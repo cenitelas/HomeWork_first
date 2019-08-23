@@ -19,41 +19,35 @@ namespace WebApplication1.Controllers
             }
             return View(authors) ;
         }
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public ActionResult Create(Authors author)
+        public ActionResult EditAndCreate(int? id)
         {
-            using (Model1 db = new Model1())
-            {
-                db.Authors.Add(author);
-                db.SaveChanges();
-            }
-            return Redirect("Index");
-        }
-
-        public ActionResult Edit(int? id)
-        {
-            Authors author;
+            Authors author = new Authors();
+            if (id != null)
             using (Model1 db = new Model1())
             {
                 author = db.Authors.Where(a => a.Id == id).FirstOrDefault();
             }
+           
             return View(author);
+
         }
 
         [HttpPost]
-        public ActionResult Edit(Authors author)
+        public ActionResult EditAndCreate(Authors author)
         {
             using (Model1 db = new Model1())
             {
-                var oldAuthor = db.Authors.Where(a => a.Id == author.Id).FirstOrDefault();
-                oldAuthor.FirstName = author.FirstName;
-                oldAuthor.LastName = author.LastName;
-
+                if (author.Id != 0)
+                {
+                    var oldAuthor = db.Authors.Where(a => a.Id == author.Id).FirstOrDefault();
+                    oldAuthor.FirstName = author.FirstName;
+                    oldAuthor.LastName = author.LastName;
+                }
+                else
+                {
+                    db.Authors.Add(author);
+                }
                 db.SaveChanges();
             }
             return RedirectToActionPermanent("Index", "Author");
