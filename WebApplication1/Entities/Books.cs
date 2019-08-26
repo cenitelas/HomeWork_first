@@ -21,5 +21,6 @@ namespace WebApplication1
         public int? Price { get; set; }
 
         public virtual Authors Authors { get; set; }
+        public virtual ICollection<UsersBooks> UsersBooks { get; set; }
     }
 }
