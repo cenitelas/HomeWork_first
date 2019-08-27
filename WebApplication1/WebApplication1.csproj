@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
+    <Compile Include="Models\UserEditModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,10 +228,10 @@
     <Content Include="Views\Users\CreateOrEdit.cshtml" />
     <Content Include="Views\UsersBooks\Index.cshtml" />
     <Content Include="Views\UsersBooks\CreateOrEdit.cshtml" />
+    <Content Include="Views\Users\HistoryBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

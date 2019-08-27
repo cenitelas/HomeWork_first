@@ -198,3 +198,5 @@ C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplica
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.pdb
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.Createproject.resources
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.cache
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.Createproject.resources
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.Cache

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -19,6 +20,11 @@ namespace WebApplication1.Controllers
             return View(db.Users.ToList());
         }
 
+        public ActionResult HistoryBooks(UserEditModel model)
+        {
+           return PartialView(model.books);
+        }
+
         public ActionResult CreateOrEdit(int? id)
         {
             if (id == null)
@@ -27,8 +33,12 @@ namespace WebApplication1.Controllers
             }
             else
             {
+                IEnumerable<Books> history = db.Books.ToList().FindAll(i => i.UsersBooks.Any(z => z.UserId == id));
+
                 Users users = db.Users.Find(id);
-                return View(users);
+                UserEditModel userModel = new UserEditModel() { user = users, books = history };
+                ViewBag.history = new SelectList(history);
+                return View(userModel);
             }
         }
 
