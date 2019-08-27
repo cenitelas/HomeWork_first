@@ -129,6 +129,8 @@ C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\ru\Sys
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.Createproject.resources
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.Cache
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ApplicationInsights.config
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\roslyn\csc.exe
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -192,11 +194,9 @@ C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.Ra
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.WebPages.resources.dll
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.Createproject.resources
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.cache
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.pdb
-C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.Createproject.resources
-C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.cache
-C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.Createproject.resources
-C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.Cache

@@ -20,9 +20,9 @@ namespace WebApplication1.Controllers
             return View(db.Users.ToList());
         }
 
-        public ActionResult HistoryBooks(UserEditModel model)
+        public ActionResult HistoryBooks()
         {
-           return PartialView(model.books);
+           return PartialView();
         }
 
         public ActionResult CreateOrEdit(int? id)
@@ -33,27 +33,30 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                IEnumerable<Books> history = db.Books.ToList().FindAll(i => i.UsersBooks.Any(z => z.UserId == id));
-
+                List<Books> history = db.Books.ToList().FindAll(i => i.UsersBooks.Any(z => z.UserId == id));
                 Users users = db.Users.Find(id);
-                UserEditModel userModel = new UserEditModel() { user = users, books = history };
-                ViewBag.history = new SelectList(history);
-                return View(userModel);
+                List<AuthorBook> ab = new List<AuthorBook>();
+                foreach(var item in history)
+                {
+                    ab.Add(new AuthorBook() { AuthorName = item.Authors.FirstName, BookTitle = item.Title });
+                }
+                ViewBag.books = ab;
+                return View(users);
             }
         }
 
         [HttpPost]
-        public ActionResult CreateOrEdit(Users users)
+        public ActionResult CreateOrEdit(Users model)
         {
-            if (users.Id==0)
+            if (model.Id==0)
             {
-                db.Users.Add(users);
+                db.Users.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
             {
-                db.Entry(users).State = EntityState.Modified;
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

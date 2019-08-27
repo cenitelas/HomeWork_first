@@ -5,9 +5,9 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class UserEditModel
+    public class AuthorBook
     {
-        public Users user;
-        public IEnumerable<Books> books;
+        public string AuthorName { get; set; }
+        public string BookTitle { get; set; }
     }
 }
