@@ -175,6 +175,10 @@
     <Compile Include="Migrations\201908261742427_Create project.Designer.cs">
       <DependentUpon>201908261742427_Create project.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908281238143_Add user email and OrderDate.cs" />
+    <Compile Include="Migrations\201908281238143_Add user email and OrderDate.Designer.cs">
+      <DependentUpon>201908281238143_Add user email and OrderDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
     <Compile Include="Models\AuthorBook.cs" />
@@ -226,9 +230,9 @@
     <Content Include="Views\Books\CreateAndEdit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\UsersBooks\Index.cshtml" />
-    <Content Include="Views\UsersBooks\CreateOrEdit.cshtml" />
     <Content Include="Views\Users\CreateOrEdit.cshtml" />
     <Content Include="Views\Users\HistoryBooks.cshtml" />
+    <Content Include="Views\UsersBooks\CreateOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,6 +248,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201908261742427_Create project.resx">
       <DependentUpon>201908261742427_Create project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281238143_Add user email and OrderDate.resx">
+      <DependentUpon>201908281238143_Add user email and OrderDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

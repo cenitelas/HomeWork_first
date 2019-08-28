@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.user.Name)
         </th>
+        <th>
+            Left days
+        </th>
         <th></th>
     </tr>
 
@@ -29,6 +32,13 @@
             @Html.DisplayFor(modelItem => item.user.Name)
         </td>
         <td>
+            @(item.DateOrder.Day - DateTime.Now.Day)
+        </td>
+        <td>
+            @if (item.DateOrder.Day - DateTime.Now.Day < 0)
+            {
+                @Html.ActionLink("Link", "Link", new { id = item.Id }) @(" |")
+            }
             @Html.ActionLink("Edit", "CreateOrEdit", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>

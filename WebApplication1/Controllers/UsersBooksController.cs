@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1;
@@ -22,6 +23,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult CreateOrEdit(int? id)
         {
+            ViewBag.date = DateTime.Now.ToString();
             if (id == null)
             {
                 ViewBag.BooksId = new SelectList(db.Books, "Id", "Title");
@@ -61,6 +63,27 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Link(int id)
+        {
+            Users user = db.Users.Find(id);
+            MailAddress from = new MailAddress("cenitelas@mail.ru", "RETURN MY BOOK!!!");
+            // кому отправляем
+            MailAddress to = new MailAddress(user.Email);
+            // создаем объект сообщения
+            MailMessage m = new MailMessage(from, to);
+            // тема письма
+            m.Subject = "RETURN MY BOOK!!!";
+            // текст письма - включаем в него ссылку
+            m.Body = string.Format(user.Name+" верни книгу!!!!!");
+            m.IsBodyHtml = true;
+            // адрес smtp-сервера, с которого мы и будем отправлять письмо
+            SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.mail.ru", 587);
+            // логин и пароль
+            smtp.Credentials = new System.Net.NetworkCredential("cenitelas@mail.ru", "sanyaug777888");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

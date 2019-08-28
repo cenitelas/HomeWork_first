@@ -12,5 +12,6 @@ using System.Web;
         public string Name { get; set; }
 
         public virtual ICollection<UsersBooks> UsersBooks { get; set; }
+        public string Email { get; set; }
     }
 }
