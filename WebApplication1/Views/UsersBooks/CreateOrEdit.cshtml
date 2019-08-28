@@ -3,13 +3,18 @@
 @{
     ViewBag.Title = "CreateOrEdit";
 }
-
-<h2>CreateOrEdit</h2>
+@if (ViewBag.error !=null)
+{
+<div class="alert alert-danger" role="alert">
+   @ViewBag.error
+</div>
+}
+<h2>Create or edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>UsersBooks</h4>
         <hr />

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1;
 using System.IO;
+using System.Text;
 
 namespace WebApplication1.Controllers
 {
@@ -43,11 +44,33 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreateOrEdit(UsersBooks usersBooks)
         {
+            if (usersBooks.DateOrder == null || usersBooks.DateOrder<DateTime.Now)
+            {
+
+                ViewBag.BooksId = new SelectList(db.Books, "Id", "Title", usersBooks.BooksId);
+                ViewBag.UserId = new SelectList(db.Users, "Id", "Name", usersBooks.UserId);
+                ViewBag.error = "Дата заказа не должна быть пустой и должна быть больше текущей даты";
+                return View();
+            }
+
             if (usersBooks.Id==0)
             {
-                db.UsersBooks.Add(usersBooks);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                UsersBooks ub = db.UsersBooks.FirstOrDefault(i => i.UserId == usersBooks.UserId && i.DateOrder < DateTime.Now);
+              
+                    if (ub == null)
+                    {
+                        db.UsersBooks.Add(usersBooks);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.error = "Данный пользователь критический задолжник!!!!";
+                        ViewBag.BooksId = new SelectList(db.Books, "Id", "Title", usersBooks.BooksId);
+                        ViewBag.UserId = new SelectList(db.Users, "Id", "Name", usersBooks.UserId);
+
+                        return View();
+                    }
             }
             else{
                 db.Entry(usersBooks).State = EntityState.Modified;
@@ -66,23 +89,26 @@ namespace WebApplication1.Controllers
 
         public ActionResult Download()
         {
-            byte[] data = new byte[2048];
-            MemoryStream mStream = new MemoryStream(data);
+            List<UsersBooks> dolj = db.UsersBooks.Where(i => i.DateOrder < DateTime.Now).ToList();
 
-            StreamWriter sWriter = new StreamWriter(mStream);
-            StreamReader sReader = new StreamReader(mStream);
-            List<UsersBooks> dolj = db.UsersBooks.Where(i => i.DateOrder > DateTime.Now).ToList();
+            StringBuilder sb = new StringBuilder();
+            string header = "#\tUser\tAuthor\tBook\tReturn";
+            sb.Append(header);
+            sb.Append("\r\n\r\n");
+            sb.Append('-',header.Length*2);
+            sb.Append("\r\n\r\n");
             foreach (var item in dolj)
             {
-                sWriter.WriteLine((dolj.IndexOf(item) + 1) + ". " + item.user.Name + ". " + item.book.Authors.LastName + ". " + item.book.Title);
+                var user = db.Users.Find(item.UserId);
+                var book = db.Books.Find(item.BooksId);
+                var author = db.Authors.Find(book.AuthorId);
+
+                sb.Append((dolj.IndexOf(item) + 1) + "\t" + user.Name + "\t" + author.LastName + "\t" + book.Title+"\t"+item.DateOrder.Date+"\r\n");
             }
-            // sWriter.Flush();
-            mStream.Position = 0;
-            string contentType = "application/text";
-            return File(mStream, contentType, "users.txt");
+            byte[] data = Encoding.ASCII.GetBytes(sb.ToString());
 
-
-
+            string contentType = "text/plain";
+            return File(data, contentType, "users.txt");
         }
 
         public ActionResult Link(int id)

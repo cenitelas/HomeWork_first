@@ -4,10 +4,13 @@
     ViewBag.Title = "Index";
 }
 
+
+
+
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateOrEdit")
+    @Html.ActionLink("Create New", "CreateOrEdit") |
     @Html.ActionLink("Download users", "Download")
 </p>
 <table class="table">
@@ -24,26 +27,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.book.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.Name)
-        </td>
-        <td>
-            @(item.DateOrder.Day - DateTime.Now.Day)
-        </td>
-        <td>
-            @if (item.DateOrder.Day - DateTime.Now.Day < 0)
-            {
-                @Html.ActionLink("Link", "Link", new { id = item.Id }) @(" |")
-            }
-            @Html.ActionLink("Edit", "CreateOrEdit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Name)
+            </td>
+            <td>
+                @(item.DateOrder.Day - DateTime.Now.Day)
+            </td>
+            <td>
+                @if (item.DateOrder.Day - DateTime.Now.Day < 0)
+                {
+                    @Html.ActionLink("Link", "Link", new { id = item.Id }) @(" |")
+                }
+                @Html.ActionLink("Edit", "CreateOrEdit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

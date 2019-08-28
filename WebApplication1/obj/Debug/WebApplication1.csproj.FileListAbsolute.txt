@@ -201,3 +201,5 @@ C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplica
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.pdb
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.AdduseremailandOrderDate.resources
+C:\Users\fivern\source\repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache
+C:\Users\fivern\source\repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.Migrations.AdduseremailandOrderDate.resources
