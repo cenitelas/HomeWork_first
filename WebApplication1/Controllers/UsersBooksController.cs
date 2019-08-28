@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1;
+using System.IO;
 
 namespace WebApplication1.Controllers
 {
@@ -61,6 +62,27 @@ namespace WebApplication1.Controllers
             db.UsersBooks.Remove(usersBooks);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Download()
+        {
+            byte[] data = new byte[2048];
+            MemoryStream mStream = new MemoryStream(data);
+
+            StreamWriter sWriter = new StreamWriter(mStream);
+            StreamReader sReader = new StreamReader(mStream);
+            List<UsersBooks> dolj = db.UsersBooks.Where(i => i.DateOrder > DateTime.Now).ToList();
+            foreach (var item in dolj)
+            {
+                sWriter.WriteLine((dolj.IndexOf(item) + 1) + ". " + item.user.Name + ". " + item.book.Authors.LastName + ". " + item.book.Title);
+            }
+            // sWriter.Flush();
+            mStream.Position = 0;
+            string contentType = "application/text";
+            return File(mStream, contentType, "users.txt");
+
+
+
         }
 
         public ActionResult Link(int id)
