@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
                 List<AuthorBook> ab = new List<AuthorBook>();
                 foreach(var item in history)
                 {
-                    if(history.IndexOf(item)>history.Count - 5)
+                    if(history.IndexOf(item)>history.Count - 6)
                     ab.Add(new AuthorBook() { AuthorName = item.Authors.FirstName, BookTitle = item.Title });
                 }
                 ViewBag.books = ab;
