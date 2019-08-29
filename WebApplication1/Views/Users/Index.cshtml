@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Users>
+﻿@model IEnumerable<WebApplication1.Models.UserModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateOrEdit")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,7 +29,8 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "CreateOrEdit", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

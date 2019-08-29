@@ -1,0 +1,14 @@
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\BL.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\BL.pdb
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\AutoMapper.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\DL.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\Ninject.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\EntityFramework.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\DL.pdb
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\AutoMapper.pdb
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\AutoMapper.xml
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\Ninject.xml
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\bin\Debug\EntityFramework.xml
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\obj\Debug\BL.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\BL\obj\Debug\BL.pdb

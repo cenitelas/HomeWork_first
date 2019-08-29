@@ -1,5 +1,4 @@
-﻿@using WebApplication1.Models;
-@model WebApplication1.Users
+﻿@model WebApplication1.Models.UserModel
 
 @{
     ViewBag.Title = "CreateOrEdit";
@@ -10,12 +9,13 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Users</h4>
+        <h4>UserModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -23,13 +23,15 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
         </div>
-        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -37,10 +39,7 @@
         </div>
     </div>
 }
-@if (@Model != null)
-{
-    @Html.Partial("HistoryBooks", new ViewDataDictionary{{ "books", ViewBag.books }});
-    }
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

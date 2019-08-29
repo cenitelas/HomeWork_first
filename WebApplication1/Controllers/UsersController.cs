@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using BL;
+using BL.BModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,16 +16,21 @@ namespace WebApplication1.Controllers
 {
     public class UsersController : Controller
     {
-        private Model1 db = new Model1();
+        IUserService userService;
+        public UsersController(IUserService serv)
+        {
+            userService = serv;
+        }
 
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
+            return View(mapper.Map<IEnumerable<BUsers>, List<UserModel>>(userService.GetUsers()));
         }
 
         public ActionResult HistoryBooks()
         {
-           return PartialView();
+            return PartialView();
         }
 
         public ActionResult CreateOrEdit(int? id)
@@ -33,51 +41,28 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                List<Books> history = db.Books.ToList().FindAll(i => i.UsersBooks.Any(z => z.UserId == id));
-                Users users = db.Users.Find(id);
-                List<AuthorBook> ab = new List<AuthorBook>();
-                foreach(var item in history)
-                {
-                    if(history.IndexOf(item)>history.Count - 6)
-                    ab.Add(new AuthorBook() { AuthorName = item.Authors.FirstName, BookTitle = item.Title });
-                }
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
+                List<AuthorBook> ab =  mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userService.GetReturnBooks((int)id));
+                mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
+                UserModel user = mapper.Map<BUsers, UserModel>(userService.GetUser((int)id));
                 ViewBag.books = ab;
-                return View(users);
+                return View(user);
             }
         }
 
         [HttpPost]
-        public ActionResult CreateOrEdit(Users model)
+        public ActionResult CreateOrEdit(UserModel model)
         {
-            if (model.Id==0)
-            {
-                db.Users.Add(model);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                db.Entry(model).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserModel, BUsers>()).CreateMapper();
+            BUsers user = mapper.Map<UserModel, BUsers>(model);
+            userService.CreateOrUpdate(user);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
         {
-            Users users = db.Users.Find(id);
-            db.Users.Remove(users);
-            db.SaveChanges();
+            userService.DeleteUser(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
