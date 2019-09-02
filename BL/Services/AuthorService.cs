@@ -8,14 +8,15 @@ using DL.Repository;
 using DL.Entities;
 using AutoMapper;
 using BL.BInterfaces;
+using DL.Interfaces;
 
 namespace BL.Services
 {
     public class AuthorService : IAuthorService
     {
-        UnitOfWork Database { get; set; }
+        IUnitOfWork Database { get; set; }
 
-        public AuthorService(UnitOfWork uow)
+        public AuthorService(IUnitOfWork uow)
         {
             Database = uow;
         }
@@ -42,20 +43,20 @@ namespace BL.Services
             Database.Dispose();
         }
 
-        public BAuthor GetAuthor(int? id)
+        public BAuthor GetAuthor(int id)
         {
             if (id != 0)
             {
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authors, BAuthor>()).CreateMapper();
                 return mapper.Map<Authors, BAuthor>(Database.Authors.Get((int)id));
             }
-            return null;
+            return new BAuthor();
         }
 
         public IEnumerable<BAuthor> GetAuthors()
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authors, BAuthor>()).CreateMapper();
-            return mapper.Map<IEnumerable<Authors>, List<BAuthor>>(Database.Authors.GetAll());
+            return mapper.Map<IEnumerable<Authors>, IEnumerable<BAuthor>>(Database.Authors.GetAll());
         }
 
         public void DeleteAuthor(int id)

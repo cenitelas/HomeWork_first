@@ -2,6 +2,7 @@
 using BL.BInterfaces;
 using BL.BModel;
 using DL.Entities;
+using DL.Interfaces;
 using DL.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace BL.Services
 {
     public class UserBookService : IUserBookService
     {
-        UnitOfWork Database { get; set; }
+        IUnitOfWork Database { get; set; }
 
-        public UserBookService(UnitOfWork uow)
+        public UserBookService(IUnitOfWork uow)
         {
             Database = uow;
         }
@@ -42,7 +43,7 @@ namespace BL.Services
             Database.Dispose();
         }
 
-        public BUsersBook GetUserBook(int? id)
+        public BUsersBook GetUserBook(int id)
         {
             if (id != 0)
             {
@@ -54,7 +55,7 @@ namespace BL.Services
                 buserBook.UserName = Database.Users.Get(buserBook.UserId).Name;
                 return buserBook;
             }
-            return null;
+            return new BUsersBook();
         }
 
         public IEnumerable<BUsersBook> GetUsersBooks()
@@ -71,7 +72,7 @@ namespace BL.Services
         public bool CheckUser(int id)
         {
             UsersBooks usersBooks = Database.UsersBooks.Find(i => i.UserId == id && i.DateOrder <= DateTime.Now).FirstOrDefault();
-            return (usersBooks == null) ? false : true;
+            return (usersBooks == null) ? true : false;
         }
 
         public void DeleteUserBook(int id)

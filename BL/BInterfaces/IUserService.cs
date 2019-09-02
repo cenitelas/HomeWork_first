@@ -10,7 +10,7 @@ namespace BL
     public interface IUserService
     {
         void CreateOrUpdate(BUsers user);
-        BUsers GetUser(int? id);
+        BUsers GetUser(int id);
         IEnumerable<BUsers> GetUsers();
         List<BUsersBook> GetReturnBooks(int id);
         void DeleteUser(int id);

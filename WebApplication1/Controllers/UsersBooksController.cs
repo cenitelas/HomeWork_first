@@ -15,6 +15,7 @@ using AutoMapper;
 using BL.BModel;
 using WebApplication1.Models;
 using BL;
+using BL.Utils;
 
 namespace WebApplication1.Controllers
 {
@@ -32,29 +33,25 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
-            return View(mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userBookService.GetUsersBooks()));
+            return View(AutoMapper<BUsersBook,AuthorBook>.MapList(userBookService.GetUsersBooks));
         }
 
-        public ActionResult CreateOrEdit(int? id)
+        public ActionResult CreateOrEdit(int? id=0)
         {
             ViewBag.date = DateTime.Now.ToString();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BBook, BookModel>()).CreateMapper();
-            List<BookModel> books = mapper.Map<IEnumerable<BBook>, List<BookModel>>(bookService.GetBooks());
-            mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
-            List<UserModel> users = mapper.Map<IEnumerable<BUsers>, List<UserModel>>(userService.GetUsers());
+            List<BookModel> books = AutoMapper<BBook, BookModel>.MapList(bookService.GetBooks).ToList();
+            List<UserModel> users = AutoMapper<BUsers, UserModel>.MapList(userService.GetUsers).ToList();
 
             if (id == null) { 
-                ViewBag.BooksId = new SelectList(books, "Id", "Title");          
-                ViewBag.UserId = new SelectList(users, "Id", "Name");
-                return View();
+                ViewBag.books = new SelectList(books, "Id", "Title");          
+                ViewBag.users = new SelectList(users, "Id", "Name");
+                return View(new AuthorBook());
             }
             else
             {
-                mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
-                AuthorBook usersBooks = mapper.Map<BUsersBook, AuthorBook>(userBookService.GetUserBook(id));
-                ViewBag.BooksId = new SelectList(books, "Id", "Title", usersBooks.BooksId);
-                ViewBag.UserId = new SelectList(users, "Id", "Name", usersBooks.UserId);
+                AuthorBook usersBooks = AutoMapper<BUsersBook, AuthorBook>.MapObject(userBookService.GetUserBook,(int)id);
+                ViewBag.books = new SelectList(books, "Id", "Title", usersBooks.BooksId);
+                ViewBag.users = new SelectList(users, "Id", "Name", usersBooks.UserId);
                 return View(usersBooks);
             }
         }
@@ -62,22 +59,19 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreateOrEdit(AuthorBook usersBooks)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BBook, BookModel>()).CreateMapper();
-            List<BookModel> books = mapper.Map<IEnumerable<BBook>, List<BookModel>>(bookService.GetBooks());
-            mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
-            List<UserModel> users = mapper.Map<IEnumerable<BUsers>, List<UserModel>>(userService.GetUsers());
+            List<BookModel> books = AutoMapper<BBook, BookModel>.MapList(bookService.GetBooks).ToList();
+            List<UserModel> users = AutoMapper<BUsers, UserModel>.MapList(userService.GetUsers).ToList();
 
             if (usersBooks.DateOrder == null || usersBooks.DateOrder < DateTime.Now)
             {
 
-                ViewBag.BooksId = new SelectList(books, "Id", "Title", usersBooks.BooksId);
-                ViewBag.UserId = new SelectList(users, "Id", "Name", usersBooks.UserId);
+                ViewBag.books = new SelectList(books, "Id", "Title", usersBooks.BooksId);
+                ViewBag.users = new SelectList(users, "Id", "Name", usersBooks.UserId);
                 ViewBag.error = "Дата заказа не должна быть пустой и должна быть больше текущей даты";
-                return View();
+                return View(usersBooks);
             }
 
-            mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorBook, BUsersBook>()).CreateMapper();
-            BUsersBook busersBooks = mapper.Map<AuthorBook, BUsersBook>(usersBooks);
+            BUsersBook busersBooks = AutoMapper<AuthorBook,BUsersBook>.MapObject(usersBooks);
 
             if (userBookService.CheckUser(usersBooks.UserId))
             {

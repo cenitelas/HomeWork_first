@@ -7,14 +7,15 @@ using BL.BModel;
 using DL.Repository;
 using DL.Entities;
 using AutoMapper;
+using DL.Interfaces;
 
 namespace BL.Services
 {
     public class UserService : IUserService
     {
-        UnitOfWork Database { get; set; }
+        IUnitOfWork Database { get; set; }
 
-        public UserService(UnitOfWork uow)
+        public UserService(IUnitOfWork uow)
         {
             Database = uow;
         }

@@ -2,6 +2,7 @@
 using BL.BInterfaces;
 using BL.BModel;
 using DL.Entities;
+using DL.Interfaces;
 using DL.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace BL.Services
 {
     public class BookService:IBookService
     {
-        UnitOfWork Database { get; set; }
+        IUnitOfWork Database { get; set; }
 
-        public BookService(UnitOfWork uow)
+        public BookService(IUnitOfWork uow)
         {
             Database = uow;
         }
@@ -42,7 +43,7 @@ namespace BL.Services
             Database.Dispose();
         }
 
-        public BBook GetBook(int? id)
+        public BBook GetBook(int id)
         {
             if (id != 0)
             {

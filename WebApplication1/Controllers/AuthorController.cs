@@ -3,6 +3,7 @@ using BL;
 using BL.BInterfaces;
 using BL.BModel;
 using BL.Services;
+using BL.Utils;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -22,18 +23,12 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Index()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BAuthor, AuthorModel>()).CreateMapper();
-            return View(mapper.Map<IEnumerable<BAuthor>, List<AuthorModel>>(authorService.GetAuthors()));
+            return View(AutoMapper<BAuthor, AuthorModel>.MapList(authorService.GetAuthors));
         }
 
-        public ActionResult EditAndCreate(int? id)
+        public ActionResult EditAndCreate(int? id=0)
         {
-            AuthorModel author = new AuthorModel();
-            if (id != null) {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BAuthor, AuthorModel>()).CreateMapper();
-                author = mapper.Map<BAuthor, AuthorModel>(authorService.GetAuthor(id));
-            }
-
+            AuthorModel author = AutoMapper<BAuthor, AuthorModel>.MapObject(authorService.GetAuthor,(int)id);
             return View(author);
 
         }
@@ -41,10 +36,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult EditAndCreate(AuthorModel author)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorModel, BAuthor>()).CreateMapper();
-            BAuthor oldAuthor = mapper.Map<AuthorModel, BAuthor>(author);
+            BAuthor oldAuthor = AutoMapper<AuthorModel, BAuthor>.MapObject(author);
             authorService.CreateOrUpdate(oldAuthor);
-
             return RedirectToActionPermanent("Index", "Author");
         }
 

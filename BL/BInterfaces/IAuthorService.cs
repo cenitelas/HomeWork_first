@@ -10,7 +10,7 @@ namespace BL.BInterfaces
     public interface IAuthorService
     {
         void CreateOrUpdate(BAuthor author);
-        BAuthor GetAuthor(int? id);
+        BAuthor GetAuthor(int id);
         IEnumerable<BAuthor> GetAuthors();
         void DeleteAuthor(int id);
         void Dispose();

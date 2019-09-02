@@ -4,11 +4,12 @@ namespace DL.Entities
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Data.Entity.Infrastructure;
 
     public partial class Model1 : DbContext
     {
-        public Model1()
-            : base("DefaultConnection")
+        public Model1(string connection)
+            : base(connection)
         {
         }
 

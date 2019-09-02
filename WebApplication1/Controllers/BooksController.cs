@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using BL.Utils;
 using BL.BInterfaces;
 using BL.BModel;
 using System;
@@ -26,22 +26,17 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BBook, BookModel>()).CreateMapper();
-            return View(mapper.Map<IEnumerable<BBook>, List<BookModel>>(bookService.GetBooks()));
+            return View(AutoMapper<BBook,BookModel>.MapList(bookService.GetBooks));
         }
 
-
-        // GET: Books/Create
-        public ActionResult CreateAndEdit(int? id)
+        public ActionResult CreateAndEdit(int? id=0)
         {
             BookModel book = new BookModel();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BAuthor, AuthorModel>()).CreateMapper();
-            List<AuthorModel> authors =  mapper.Map<IEnumerable<BAuthor>, List<AuthorModel>>(authorService.GetAuthors());
+            List<AuthorModel> authors = AutoMapper<BAuthor, AuthorModel>.MapList(authorService.GetAuthors).ToList();
             ViewBag.AuthorId = new SelectList(authors, "Id", "FirstName");
-            if (id != null)
+            if (id != 0)
             {
-                mapper = new MapperConfiguration(cfg => cfg.CreateMap<BBook, BookModel>()).CreateMapper();
-                book = mapper.Map<BBook, BookModel>(bookService.GetBook(id));
+                book = AutoMapper<BBook, BookModel>.MapObject(bookService.GetBook,(int)id);
             }
             return View(book);
         }
@@ -49,8 +44,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreateAndEdit(BookModel book)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookModel, BBook>()).CreateMapper();
-            BBook newBook = mapper.Map<BookModel, BBook>(book);
+            BBook newBook = AutoMapper<BookModel, BBook>.MapObject(book);
             bookService.CreateOrUpdate(newBook);
             return RedirectToAction("Index");
         }

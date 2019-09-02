@@ -7,10 +7,10 @@ using System.Web.Http.Dependencies;
 
 namespace WebApplication1
 {
-    public class NinjectDependencyResolver : IDependencyResolver, System.Web.Mvc.IDependencyResolver
+    public class NinjectDep2endencyResolver : IDependencyResolver, System.Web.Mvc.IDependencyResolver
     {
         private IKernel kernel;
-        public NinjectDependencyResolver(IKernel kernel)
+        public NinjectDep2endencyResolver(IKernel kernel)
         {
             this.kernel = kernel;
         }

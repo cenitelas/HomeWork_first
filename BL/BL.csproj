@@ -62,6 +62,7 @@
     <Compile Include="Services\ServiceModule.cs" />
     <Compile Include="Services\UserBookService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Utils\AutoMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DL\DL.csproj">

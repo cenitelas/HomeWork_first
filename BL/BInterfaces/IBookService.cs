@@ -10,7 +10,7 @@ namespace BL.BInterfaces
     public interface IBookService
     {
         void CreateOrUpdate(BBook book);
-        BBook GetBook(int? id);
+        BBook GetBook(int id);
         IEnumerable<BBook> GetBooks();
         void DeleteBook(int id);
         void Dispose();

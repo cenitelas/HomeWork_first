@@ -9,7 +9,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using WebApplication1.Modules;
 using System.Web.Mvc;
-
+using Ninject.Web.Mvc;
 
 namespace WebApplication1
 {
@@ -23,8 +23,8 @@ namespace WebApplication1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             NinjectModule Module = new ViewModule();
-            NinjectModule serviceModule = new ServiceModule();
-            var kernel = new StandardKernel(Module, serviceModule);
+            NinjectModule serviceModule = new ServiceModule("DefaultConnection");
+            var kernel = new StandardKernel(serviceModule, Module);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
