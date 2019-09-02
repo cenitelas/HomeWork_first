@@ -1,66 +1,56 @@
-﻿using System;
+﻿using AutoMapper;
+using BL;
+using BL.BInterfaces;
+using BL.BModel;
+using BL.Services;
+using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class AuthorController : Controller
     {
-        // GET: Author
+        IAuthorService authorService;
+        public AuthorController(IAuthorService serv)
+        {
+            authorService = serv;
+        }
         public ActionResult Index()
         {
-            List<Authors> authors;
-            using (Model1 db = new Model1())
-            {
-                authors = db.Authors.ToList();
-
-            }
-            return View(authors) ;
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BAuthor, AuthorModel>()).CreateMapper();
+            return View(mapper.Map<IEnumerable<BAuthor>, List<AuthorModel>>(authorService.GetAuthors()));
         }
 
         public ActionResult EditAndCreate(int? id)
         {
-            Authors author = new Authors();
-            if (id != null)
-            using (Model1 db = new Model1())
-            {
-                author = db.Authors.Where(a => a.Id == id).FirstOrDefault();
+            AuthorModel author = new AuthorModel();
+            if (id != null) {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BAuthor, AuthorModel>()).CreateMapper();
+                author = mapper.Map<BAuthor, AuthorModel>(authorService.GetAuthor(id));
             }
-           
+
             return View(author);
 
         }
 
         [HttpPost]
-        public ActionResult EditAndCreate(Authors author)
+        public ActionResult EditAndCreate(AuthorModel author)
         {
-            using (Model1 db = new Model1())
-            {
-                if (author.Id != 0)
-                {
-                    var oldAuthor = db.Authors.Where(a => a.Id == author.Id).FirstOrDefault();
-                    oldAuthor.FirstName = author.FirstName;
-                    oldAuthor.LastName = author.LastName;
-                }
-                else
-                {
-                    db.Authors.Add(author);
-                }
-                db.SaveChanges();
-            }
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorModel, BAuthor>()).CreateMapper();
+            BAuthor oldAuthor = mapper.Map<AuthorModel, BAuthor>(author);
+            authorService.CreateOrUpdate(oldAuthor);
+
             return RedirectToActionPermanent("Index", "Author");
         }
 
         public ActionResult Delete(int id)
         {
-            using (Model1 db = new Model1())
-            {
-                var author = db.Authors.Where(a => a.Id == id).FirstOrDefault();
-                db.Authors.Remove(author);
-                db.SaveChanges();
-            }
+            authorService.DeleteAuthor(id);
             return RedirectToAction("Index", "Author");
         }
     }

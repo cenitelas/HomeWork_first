@@ -10,86 +10,99 @@ using System.Web.Mvc;
 using WebApplication1;
 using System.IO;
 using System.Text;
+using BL.BInterfaces;
+using AutoMapper;
+using BL.BModel;
+using WebApplication1.Models;
+using BL;
 
 namespace WebApplication1.Controllers
 {
     public class UsersBooksController : Controller
     {
-        private Model1 db = new Model1();
+        IUserBookService userBookService;
+        IUserService userService;
+        IBookService bookService;
+        public UsersBooksController(IUserBookService serv, IUserService serv2, IBookService serv3)
+        {
+            userBookService = serv;
+            userService = serv2;
+            bookService = serv3;
+        }
 
         public ActionResult Index()
         {
-            var usersBooks = db.UsersBooks.Include(u => u.book).Include(u => u.user);
-            return View(usersBooks.ToList());
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
+            return View(mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userBookService.GetUsersBooks()));
         }
 
         public ActionResult CreateOrEdit(int? id)
         {
             ViewBag.date = DateTime.Now.ToString();
-            if (id == null)
-            {
-                ViewBag.BooksId = new SelectList(db.Books, "Id", "Title");
-                ViewBag.UserId = new SelectList(db.Users, "Id", "Name");
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BBook, BookModel>()).CreateMapper();
+            List<BookModel> books = mapper.Map<IEnumerable<BBook>, List<BookModel>>(bookService.GetBooks());
+            mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
+            List<UserModel> users = mapper.Map<IEnumerable<BUsers>, List<UserModel>>(userService.GetUsers());
+
+            if (id == null) { 
+                ViewBag.BooksId = new SelectList(books, "Id", "Title");          
+                ViewBag.UserId = new SelectList(users, "Id", "Name");
                 return View();
             }
             else
             {
-                UsersBooks usersBooks = db.UsersBooks.Find(id);
-                ViewBag.BooksId = new SelectList(db.Books, "Id", "Title", usersBooks.BooksId);
-                ViewBag.UserId = new SelectList(db.Users, "Id", "Name", usersBooks.UserId);
+                mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
+                AuthorBook usersBooks = mapper.Map<BUsersBook, AuthorBook>(userBookService.GetUserBook(id));
+                ViewBag.BooksId = new SelectList(books, "Id", "Title", usersBooks.BooksId);
+                ViewBag.UserId = new SelectList(users, "Id", "Name", usersBooks.UserId);
                 return View(usersBooks);
             }
         }
 
         [HttpPost]
-        public ActionResult CreateOrEdit(UsersBooks usersBooks)
+        public ActionResult CreateOrEdit(AuthorBook usersBooks)
         {
-            if (usersBooks.DateOrder == null || usersBooks.DateOrder<DateTime.Now)
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BBook, BookModel>()).CreateMapper();
+            List<BookModel> books = mapper.Map<IEnumerable<BBook>, List<BookModel>>(bookService.GetBooks());
+            mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
+            List<UserModel> users = mapper.Map<IEnumerable<BUsers>, List<UserModel>>(userService.GetUsers());
+
+            if (usersBooks.DateOrder == null || usersBooks.DateOrder < DateTime.Now)
             {
 
-                ViewBag.BooksId = new SelectList(db.Books, "Id", "Title", usersBooks.BooksId);
-                ViewBag.UserId = new SelectList(db.Users, "Id", "Name", usersBooks.UserId);
+                ViewBag.BooksId = new SelectList(books, "Id", "Title", usersBooks.BooksId);
+                ViewBag.UserId = new SelectList(users, "Id", "Name", usersBooks.UserId);
                 ViewBag.error = "Дата заказа не должна быть пустой и должна быть больше текущей даты";
                 return View();
             }
 
-            if (usersBooks.Id==0)
-            {
-                UsersBooks ub = db.UsersBooks.FirstOrDefault(i => i.UserId == usersBooks.UserId && i.DateOrder < DateTime.Now);
-              
-                    if (ub == null)
-                    {
-                        db.UsersBooks.Add(usersBooks);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        ViewBag.error = "Данный пользователь критический задолжник!!!!";
-                        ViewBag.BooksId = new SelectList(db.Books, "Id", "Title", usersBooks.BooksId);
-                        ViewBag.UserId = new SelectList(db.Users, "Id", "Name", usersBooks.UserId);
+            mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorBook, BUsersBook>()).CreateMapper();
+            BUsersBook busersBooks = mapper.Map<AuthorBook, BUsersBook>(usersBooks);
 
-                        return View();
-                    }
-            }
-            else{
-                db.Entry(usersBooks).State = EntityState.Modified;
-                db.SaveChanges();
+            if (userBookService.CheckUser(usersBooks.UserId))
+            {
+                userBookService.CreateOrUpdate(busersBooks);
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.error = "Данный пользователь критический задолжник!!!!";
+                ViewBag.BooksId = new SelectList(books, "Id", "Title", usersBooks.BooksId);
+                ViewBag.UserId = new SelectList(users, "Id", "Name", usersBooks.UserId);
+                return View();
             }
         }
 
         public ActionResult Delete(int id)
         {
-            UsersBooks usersBooks = db.UsersBooks.Find(id);
-            db.UsersBooks.Remove(usersBooks);
-            db.SaveChanges();
+            userBookService.DeleteUserBook(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult Download()
         {
-            List<UsersBooks> dolj = db.UsersBooks.Where(i => i.DateOrder < DateTime.Now).ToList();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
+            List<AuthorBook> dolj =  mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userBookService.GetUsersBooks().Where(i=>i.DateOrder>DateTime.Now));
 
             StringBuilder sb = new StringBuilder();
             string header = "#\tUser\tAuthor\tBook\tReturn";
@@ -99,11 +112,7 @@ namespace WebApplication1.Controllers
             sb.Append("\r\n\r\n");
             foreach (var item in dolj)
             {
-                var user = db.Users.Find(item.UserId);
-                var book = db.Books.Find(item.BooksId);
-                var author = db.Authors.Find(book.AuthorId);
-
-                sb.Append((dolj.IndexOf(item) + 1) + "\t" + user.Name + "\t" + author.LastName + "\t" + book.Title+"\t"+item.DateOrder.Date+"\r\n");
+                sb.Append((dolj.IndexOf(item) + 1) + "\t" + item.UserName + "\t" + item.AuthorName + "\t" + item.BooksName+"\t"+item.DateOrder.Date+"\r\n");
             }
             byte[] data = Encoding.ASCII.GetBytes(sb.ToString());
 
@@ -113,7 +122,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Link(int id)
         {
-            Users user = db.Users.Find(id);
+            BUsers user = userService.GetUser(id);
             MailAddress from = new MailAddress("cenitelas@mail.ru", "RETURN MY BOOK!!!");
             // кому отправляем
             MailAddress to = new MailAddress(user.Email);
@@ -131,14 +140,6 @@ namespace WebApplication1.Controllers
             smtp.EnableSsl = true;
             smtp.Send(m);
             return RedirectToAction("Index");
-        }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.UsersBooks>
+﻿@model IEnumerable<WebApplication1.Models.AuthorBook>
 
 @{
     ViewBag.Title = "Index";
@@ -16,10 +16,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.book.Title)
+            @Html.DisplayNameFor(model => model.BooksName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user.Name)
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
             Left days
@@ -31,10 +31,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.book.Title)
+                @Html.DisplayFor(modelItem => item.BooksName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.user.Name)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
                 @(item.DateOrder.Day - DateTime.Now.Day)
@@ -42,7 +42,7 @@
             <td>
                 @if (item.DateOrder.Day - DateTime.Now.Day < 0)
                 {
-                    @Html.ActionLink("Link", "Link", new { id = item.Id }) @(" |")
+                    @Html.ActionLink("Link", "Link", new { id = item.UserId }) @(" |")
                 }
                 @Html.ActionLink("Edit", "CreateOrEdit", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })

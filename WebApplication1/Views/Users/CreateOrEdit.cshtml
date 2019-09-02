@@ -39,7 +39,10 @@
         </div>
     </div>
 }
-
+@if (ViewBag.books != null)
+{
+    @Html.Partial("HistoryBooks", new ViewDataDictionary {{ "books", @ViewBag.books }});
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

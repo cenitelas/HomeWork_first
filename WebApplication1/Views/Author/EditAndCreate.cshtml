@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Authors
+﻿@model WebApplication1.Models.AuthorModel
 
 @{
     ViewBag.Title = "EditAndCreate";
@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Authors</h4>
+        <h4>AuthorModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

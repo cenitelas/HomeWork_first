@@ -32,6 +32,7 @@ namespace BL.Services
                 Users editUser = mapper.Map<BUsers, Users>(user);
                 Database.Users.Update(editUser);
             }
+            Database.Save();
         }
 
         public void Dispose()
@@ -74,6 +75,7 @@ namespace BL.Services
         public void DeleteUser(int id)
         {
             Database.Users.Delete(id);
+            Database.Save();
         }
 
     }

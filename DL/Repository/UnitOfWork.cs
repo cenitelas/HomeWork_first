@@ -15,9 +15,9 @@ namespace DL.Repository
         private BooksRepository bookRepository;
         private AuthorRepository authorRepository;
         private UsersBooksRepository userBooksRepository;
-        public UnitOfWork(string connectionString)
+        public UnitOfWork()
         {
-            db = new Model1(connectionString);
+            db = new Model1();
         }
 
         public IRepository<Users> Users

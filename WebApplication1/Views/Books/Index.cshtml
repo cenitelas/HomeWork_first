@@ -1,16 +1,18 @@
-﻿@model IEnumerable<WebApplication1.Books>
+﻿@model IEnumerable<WebApplication1.Models.BookModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
+<h2>Index</h2>
+
 <p>
-    @Html.ActionLink("Создать", "CreateAndEdit")
+    @Html.ActionLink("Create New", "CreateAndEdit")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Authors.FirstName)
+            @Html.DisplayNameFor(model => model.AuthorName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -27,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Authors.FirstName)
+            @Html.DisplayFor(modelItem => item.AuthorName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -39,8 +41,8 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Редактирова", "CreateAndEdit", new { id=item.Id }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "CreateAndEdit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
