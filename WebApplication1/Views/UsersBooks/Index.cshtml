@@ -37,10 +37,10 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @(item.DateOrder.Day - DateTime.Now.Day)
+                @(item.DateOrder.DayOfYear - DateTime.Now.DayOfYear)
             </td>
             <td>
-                @if (item.DateOrder.Day - DateTime.Now.Day < 0)
+                @if (item.DateOrder < DateTime.Now)
                 {
                     @Html.ActionLink("Link", "Link", new { id = item.UserId }) @(" |")
                 }

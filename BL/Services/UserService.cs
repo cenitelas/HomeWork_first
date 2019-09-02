@@ -41,14 +41,14 @@ namespace BL.Services
             Database.Dispose();
         }
 
-        public BUsers GetUser(int? id)
+        public BUsers GetUser(int id)
         {
             if (id != 0)
             {
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Users, BUsers>()).CreateMapper();
                 return mapper.Map<Users, BUsers>(Database.Users.Get((int)id));
             }
-            return null;
+            return new BUsers();
         }
 
         public List<BUsersBook> GetReturnBooks(int id)

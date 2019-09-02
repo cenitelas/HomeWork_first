@@ -96,7 +96,7 @@ namespace WebApplication1.Controllers
         public ActionResult Download()
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
-            List<AuthorBook> dolj =  mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userBookService.GetUsersBooks().Where(i=>i.DateOrder>DateTime.Now));
+            List<AuthorBook> dolj =  mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userBookService.GetUsersBooks().Where(i=>i.DateOrder<DateTime.Now));
 
             StringBuilder sb = new StringBuilder();
             string header = "#\tUser\tAuthor\tBook\tReturn";

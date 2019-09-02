@@ -236,3 +236,7 @@ C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninjec
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.Mvc.dll
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.Common.WebHost.xml
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.Mvc.xml
+C:\Users\fivern\source\repos\HomeWork_first\WebApplication1\bin\Ninject.Web.Common.WebHost.dll
+C:\Users\fivern\source\repos\HomeWork_first\WebApplication1\bin\Ninject.Web.Mvc.dll
+C:\Users\fivern\source\repos\HomeWork_first\WebApplication1\bin\Ninject.Web.Common.WebHost.xml
+C:\Users\fivern\source\repos\HomeWork_first\WebApplication1\bin\Ninject.Web.Mvc.xml
