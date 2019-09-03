@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using BL.BModel;
 using DL.Repository;
 using DL.Entities;
-using AutoMapper;
 using DL.Interfaces;
+using BL.Utils;
 
 namespace BL.Services
 {
@@ -29,8 +29,7 @@ namespace BL.Services
                 Database.Users.Create(duser);
             }else
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, Users>()).CreateMapper();
-                Users editUser = mapper.Map<BUsers, Users>(user);
+                Users editUser = AutoMapper<BUsers, Users>.Map(user);
                 Database.Users.Update(editUser);
             }
             Database.Save();
@@ -45,8 +44,7 @@ namespace BL.Services
         {
             if (id != 0)
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Users, BUsers>()).CreateMapper();
-                return mapper.Map<Users, BUsers>(Database.Users.Get((int)id));
+                return AutoMapper<Users, BUsers>.Map(Database.Users.Get,(int)id);
             }
             return new BUsers();
         }
@@ -69,8 +67,7 @@ namespace BL.Services
 
         public IEnumerable<BUsers> GetUsers()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Users, BUsers>()).CreateMapper();
-            return mapper.Map<IEnumerable<Users>, List<BUsers>>(Database.Users.GetAll());
+            return AutoMapper<IEnumerable<Users>, List<BUsers>>.Map(Database.Users.GetAll);
         }
 
         public void DeleteUser(int id)

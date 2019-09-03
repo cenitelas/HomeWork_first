@@ -1,4 +1,3 @@
-C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csprojResolveAssemblyReference.cache
 C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\WebApplication1.Migrations.Createproject.resources
 C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\WebApplication1.Migrations.AdduseremailandOrderDate.resources
 C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.GenerateResource.Cache

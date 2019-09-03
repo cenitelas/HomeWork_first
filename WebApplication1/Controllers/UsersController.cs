@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using BL.Utils;
 using BL;
 using BL.BModel;
 using System;
@@ -24,8 +24,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
-            return View(mapper.Map<IEnumerable<BUsers>, List<UserModel>>(userService.GetUsers()));
+            return View(AutoMapper<IEnumerable<BUsers>,List<UserModel>>.Map(userService.GetUsers));
         }
 
         public ActionResult HistoryBooks()
@@ -33,28 +32,18 @@ namespace WebApplication1.Controllers
             return PartialView();
         }
 
-        public ActionResult CreateOrEdit(int? id)
+        public ActionResult CreateOrEdit(int? id=0)
         {
-            if (id == null)
-            {
-                return View();
-            }
-            else
-            {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
-                List<AuthorBook> ab =  mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userService.GetReturnBooks((int)id));
-                mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsers, UserModel>()).CreateMapper();
-                UserModel user = mapper.Map<BUsers, UserModel>(userService.GetUser((int)id));
+                List<AuthorBook> ab =  AutoMapper<IEnumerable<BUsersBook>, List<AuthorBook>>.Map(userService.GetReturnBooks,(int)id);
+                UserModel user = AutoMapper<BUsers, UserModel>.Map(userService.GetUser,(int)id);
                 ViewBag.books = ab;
                 return View(user);
-            }
         }
 
         [HttpPost]
         public ActionResult CreateOrEdit(UserModel model)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserModel, BUsers>()).CreateMapper();
-            BUsers user = mapper.Map<UserModel, BUsers>(model);
+            BUsers user = AutoMapper<UserModel, BUsers>.Map(model);
             userService.CreateOrUpdate(user);
             return RedirectToAction("Index");
         }

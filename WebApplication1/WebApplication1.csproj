@@ -200,7 +200,6 @@
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Modules\ViewModule.cs" />
-    <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

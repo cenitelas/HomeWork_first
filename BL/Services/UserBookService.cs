@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using BL.Utils;
 using BL.BInterfaces;
 using BL.BModel;
 using DL.Entities;
@@ -31,8 +31,7 @@ namespace BL.Services
             }
             else
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, UsersBooks>()).CreateMapper();
-                UsersBooks editUserBook = mapper.Map<BUsersBook, UsersBooks>(userBook);
+                UsersBooks editUserBook = AutoMapper<BUsersBook, UsersBooks>.Map(userBook);
                 Database.UsersBooks.Update(editUserBook);
             }
             Database.Save();
@@ -47,8 +46,7 @@ namespace BL.Services
         {
             if (id != 0)
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersBooks, BUsersBook>()).CreateMapper();
-                BUsersBook buserBook =  mapper.Map<UsersBooks, BUsersBook>(Database.UsersBooks.Get((int)id));
+                BUsersBook buserBook =  AutoMapper<UsersBooks, BUsersBook>.Map(Database.UsersBooks.Get,(int)id);
                 buserBook.AuthorId = Database.Books.Get(buserBook.BooksId).AuthorId;
                 buserBook.AuthorName = Database.Authors.Get(buserBook.AuthorId).FirstName;
                 buserBook.BooksName = Database.Books.Get(buserBook.BooksId).Title;
@@ -60,13 +58,12 @@ namespace BL.Services
 
         public IEnumerable<BUsersBook> GetUsersBooks()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersBooks, BUsersBook>()).CreateMapper();
-            List<BUsersBook> buserBook = mapper.Map<IEnumerable<UsersBooks>, List<BUsersBook>>(Database.UsersBooks.GetAll());
+            List<BUsersBook> buserBook = AutoMapper<IEnumerable<UsersBooks>, List<BUsersBook>>.Map(Database.UsersBooks.GetAll);
             for(int i = 0; i < buserBook.Count; i++)
             {
                 buserBook[i] = GetUserBook(buserBook[i].Id);
             }
-            return buserBook;
+            return (IEnumerable<BUsersBook>) buserBook;
         }
 
         public bool CheckUser(int id)

@@ -38,12 +38,13 @@ namespace DL.Repository
 
         public IEnumerable<Authors> GetAll()
         {
-            return db.Authors;
+            List<Authors> z = db.Authors.ToList();
+            return z;
         }
 
         public IEnumerable<Authors> Find(Func<Authors, Boolean> predicate)
         {
-            return db.Authors.Where(predicate).ToList();
+            return db.Authors.Where(predicate);
         }
 
         public void Update(Authors item)

@@ -33,14 +33,14 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-            return View(AutoMapper<BUsersBook,AuthorBook>.MapList(userBookService.GetUsersBooks));
+            return View(AutoMapper<IEnumerable<BUsersBook>,List<AuthorBook>>.Map(userBookService.GetUsersBooks));
         }
 
         public ActionResult CreateOrEdit(int? id=0)
         {
             ViewBag.date = DateTime.Now.ToString();
-            List<BookModel> books = AutoMapper<BBook, BookModel>.MapList(bookService.GetBooks).ToList();
-            List<UserModel> users = AutoMapper<BUsers, UserModel>.MapList(userService.GetUsers).ToList();
+            List<BookModel> books = AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks);
+            List<UserModel> users = AutoMapper<IEnumerable<BUsers>, List<UserModel>>.Map(userService.GetUsers);
 
             if (id == null) { 
                 ViewBag.books = new SelectList(books, "Id", "Title");          
@@ -49,7 +49,7 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                AuthorBook usersBooks = AutoMapper<BUsersBook, AuthorBook>.MapObject(userBookService.GetUserBook,(int)id);
+                AuthorBook usersBooks = AutoMapper<BUsersBook, AuthorBook>.Map(userBookService.GetUserBook,(int)id);
                 ViewBag.books = new SelectList(books, "Id", "Title", usersBooks.BooksId);
                 ViewBag.users = new SelectList(users, "Id", "Name", usersBooks.UserId);
                 return View(usersBooks);
@@ -59,8 +59,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreateOrEdit(AuthorBook usersBooks)
         {
-            List<BookModel> books = AutoMapper<BBook, BookModel>.MapList(bookService.GetBooks).ToList();
-            List<UserModel> users = AutoMapper<BUsers, UserModel>.MapList(userService.GetUsers).ToList();
+            List<BookModel> books = AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks);
+            List<UserModel> users = AutoMapper<IEnumerable<BUsers>, List<UserModel>>.Map(userService.GetUsers);
 
             if (usersBooks.DateOrder == null || usersBooks.DateOrder < DateTime.Now)
             {
@@ -71,7 +71,7 @@ namespace WebApplication1.Controllers
                 return View(usersBooks);
             }
 
-            BUsersBook busersBooks = AutoMapper<AuthorBook,BUsersBook>.MapObject(usersBooks);
+            BUsersBook busersBooks = AutoMapper<AuthorBook,BUsersBook>.Map(usersBooks);
 
             if (userBookService.CheckUser(usersBooks.UserId))
             {
@@ -95,8 +95,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Download()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BUsersBook, AuthorBook>()).CreateMapper();
-            List<AuthorBook> dolj =  mapper.Map<IEnumerable<BUsersBook>, List<AuthorBook>>(userBookService.GetUsersBooks().Where(i=>i.DateOrder<DateTime.Now));
+            List<AuthorBook> dolj = AutoMapper<IEnumerable<BUsersBook>, List<AuthorBook>>.Map(userBookService.GetUsersBooks).Where(i => i.DateOrder < DateTime.Now).ToList();
 
             StringBuilder sb = new StringBuilder();
             string header = "#\tUser\tAuthor\tBook\tReturn";

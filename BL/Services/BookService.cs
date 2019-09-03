@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using BL.Utils;
 using BL.BInterfaces;
 using BL.BModel;
 using DL.Entities;
@@ -31,8 +31,7 @@ namespace BL.Services
             }
             else
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BBook, Books>()).CreateMapper();
-                Books editBook = mapper.Map<BBook, Books>(book);
+                Books editBook = AutoMapper<BBook, Books>.Map(book);
                 Database.Books.Update(editBook);
             }
             Database.Save();
@@ -47,8 +46,7 @@ namespace BL.Services
         {
             if (id != 0)
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Books, BBook>()).CreateMapper();
-                BBook book = mapper.Map<Books, BBook>(Database.Books.Get((int)id));
+                BBook book = AutoMapper<Books, BBook>.Map(Database.Books.Get,(int)id);
                 book.AuthorName = Database.Authors.Get(book.AuthorId).FirstName;
                 return book;
             }
@@ -57,8 +55,7 @@ namespace BL.Services
 
         public IEnumerable<BBook> GetBooks()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Books, BBook>()).CreateMapper();
-            List<BBook> books =  mapper.Map<IEnumerable<Books>, List<BBook>>(Database.Books.GetAll());
+            List<BBook> books =  AutoMapper<IEnumerable<Books>, List<BBook>>.Map(Database.Books.GetAll).ToList();
             books.ForEach(i => i.AuthorName = Database.Authors.Get(i.AuthorId).FirstName);
             return books;
         }

@@ -26,17 +26,17 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-            return View(AutoMapper<BBook,BookModel>.MapList(bookService.GetBooks));
+            return View(AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));
         }
 
         public ActionResult CreateAndEdit(int? id=0)
         {
             BookModel book = new BookModel();
-            List<AuthorModel> authors = AutoMapper<BAuthor, AuthorModel>.MapList(authorService.GetAuthors).ToList();
+            List<AuthorModel> authors = AutoMapper<IEnumerable<BAuthor>, List<AuthorModel>>.Map(authorService.GetAuthors);
             ViewBag.AuthorId = new SelectList(authors, "Id", "FirstName");
             if (id != 0)
             {
-                book = AutoMapper<BBook, BookModel>.MapObject(bookService.GetBook,(int)id);
+                book = AutoMapper<BBook, BookModel>.Map(bookService.GetBook,(int)id);
             }
             return View(book);
         }
@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult CreateAndEdit(BookModel book)
         {
-            BBook newBook = AutoMapper<BookModel, BBook>.MapObject(book);
+            BBook newBook = AutoMapper<BookModel, BBook>.Map(book);
             bookService.CreateOrUpdate(newBook);
             return RedirectToAction("Index");
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BL.BModel;
 using DL.Repository;
 using DL.Entities;
-using AutoMapper;
+using BL.Utils;
 using BL.BInterfaces;
 using DL.Interfaces;
 
@@ -31,8 +31,7 @@ namespace BL.Services
             }
             else
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BAuthor, Authors>()).CreateMapper();
-                Authors editAuthor = mapper.Map<BAuthor, Authors>(author);
+                Authors editAuthor = AutoMapper<BAuthor, Authors>.Map(author);
                 Database.Authors.Update(editAuthor);
             }
             Database.Save();
@@ -47,16 +46,14 @@ namespace BL.Services
         {
             if (id != 0)
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authors, BAuthor>()).CreateMapper();
-                return mapper.Map<Authors, BAuthor>(Database.Authors.Get((int)id));
+                return AutoMapper<Authors, BAuthor>.Map(Database.Authors.Get,(int)id);
             }
             return new BAuthor();
         }
 
         public IEnumerable<BAuthor> GetAuthors()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authors, BAuthor>()).CreateMapper();
-            return mapper.Map<IEnumerable<Authors>, IEnumerable<BAuthor>>(Database.Authors.GetAll());
+            return AutoMapper<IEnumerable<Authors>, List<BAuthor>>.Map(Database.Authors.GetAll);
         }
 
         public void DeleteAuthor(int id)

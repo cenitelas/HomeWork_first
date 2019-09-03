@@ -23,12 +23,12 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Index()
         {
-            return View(AutoMapper<BAuthor, AuthorModel>.MapList(authorService.GetAuthors));
+            return View(AutoMapper<IEnumerable<BAuthor>, List<AuthorModel>>.Map(authorService.GetAuthors));
         }
 
         public ActionResult EditAndCreate(int? id=0)
         {
-            AuthorModel author = AutoMapper<BAuthor, AuthorModel>.MapObject(authorService.GetAuthor,(int)id);
+            AuthorModel author = AutoMapper<BAuthor, AuthorModel>.Map(authorService.GetAuthor,(int)id);
             return View(author);
 
         }
@@ -36,7 +36,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult EditAndCreate(AuthorModel author)
         {
-            BAuthor oldAuthor = AutoMapper<AuthorModel, BAuthor>.MapObject(author);
+            BAuthor oldAuthor = AutoMapper<AuthorModel, BAuthor>.Map(author);
             authorService.CreateOrUpdate(oldAuthor);
             return RedirectToActionPermanent("Index", "Author");
         }
