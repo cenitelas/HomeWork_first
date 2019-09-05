@@ -1,8 +1,7 @@
-namespace WebApplication1.Migrations
+namespace DL.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
     public partial class Createproject : DbMigration
     {
         public override void Up()

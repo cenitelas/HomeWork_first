@@ -13,6 +13,11 @@ namespace DL.Entities
         {
         }
 
+        public Model1()
+            : base("DefaultConnection")
+        {
+        }
+
         public virtual DbSet<Authors> Authors { get; set; }
         public virtual DbSet<Books> Books { get; set; }
 
