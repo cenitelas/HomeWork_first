@@ -11,8 +11,18 @@ namespace BL.Utils
     {
         public static B Map(Func<int, A> z,int temp)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<A, B>()).CreateMapper();
-            return mapper.Map<A, B>(z.Invoke(temp));
+            if (typeof(A).GetGenericArguments().Length > 0)
+            {
+                Type x = typeof(A).GetGenericArguments()[0];
+                Type y = typeof(B).GetGenericArguments()[0];
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap(x, y)).CreateMapper();
+                return mapper.Map<A, B>(z.Invoke(temp));
+            }
+            else
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<A, B>()).CreateMapper();
+                return mapper.Map<A, B>(z.Invoke(temp));
+            }
         }
 
         public static B Map(Func<A> z)
@@ -31,14 +41,34 @@ namespace BL.Utils
 
         public static B Map(Func<string, A> z, string temp)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<A, B>()).CreateMapper();
-            return mapper.Map<A, B>(z.Invoke(temp));
+            if (typeof(A).GetGenericArguments().Length > 0)
+            {
+                Type x = typeof(A).GetGenericArguments()[0];
+                Type y = typeof(B).GetGenericArguments()[0];
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap(x, y)).CreateMapper();
+                return mapper.Map<A, B>(z.Invoke(temp));
+            }
+            else
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<A, B>()).CreateMapper();
+                return mapper.Map<A, B>(z.Invoke(temp));
+            }
         }
 
         public static B Map(A a)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<A, B>()).CreateMapper();
-            return mapper.Map<A, B>(a);
+            if (typeof(A).GetGenericArguments().Length > 0)
+            {
+                Type x = typeof(A).GetGenericArguments()[0];
+                Type y = typeof(B).GetGenericArguments()[0];
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap(x, y)).CreateMapper();
+                return mapper.Map<A, B>(a);
+            }
+            else
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<A, B>()).CreateMapper();
+                return mapper.Map<A, B>(a);
+            }
         }
     }
 }
