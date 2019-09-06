@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Entities\Authors.cs" />
     <Compile Include="Entities\Books.cs" />
+    <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Model1.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Entities\UsersBooks.cs" />
@@ -64,10 +65,15 @@
     <Compile Include="Migrations\201908281238143_Add user email and OrderDate.Designer.cs">
       <DependentUpon>201908281238143_Add user email and OrderDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909061205262_Create-genre-rep.cs" />
+    <Compile Include="Migrations\201909061205262_Create-genre-rep.Designer.cs">
+      <DependentUpon>201909061205262_Create-genre-rep.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuthorRepository.cs" />
     <Compile Include="Repository\BooksRepository.cs" />
+    <Compile Include="Repository\GenreRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\UsersBooksRepository.cs" />
@@ -82,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908281238143_Add user email and OrderDate.resx">
       <DependentUpon>201908281238143_Add user email and OrderDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061205262_Create-genre-rep.resx">
+      <DependentUpon>201909061205262_Create-genre-rep.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
