@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BInterfaces\IAuthorService.cs" />
+    <Compile Include="BInterfaces\IGenreService.cs" />
     <Compile Include="BInterfaces\IUserBookService.cs" />
     <Compile Include="BInterfaces\IBookService.cs" />
     <Compile Include="BInterfaces\IUserService.cs" />

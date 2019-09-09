@@ -189,6 +189,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\UsersBooksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Models\AuthorBook.cs" />
     <Compile Include="Models\AuthorModel.cs" />
     <Compile Include="Models\BookModel.cs" />
+    <Compile Include="Models\GenreModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Modules\ViewModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -251,6 +253,8 @@
     <Content Include="Views\Users\CreateOrEdit.cshtml" />
     <Content Include="Views\Users\HistoryBooks.cshtml" />
     <Content Include="Views\UsersBooks\CreateOrEdit.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\Genre\EditAndCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

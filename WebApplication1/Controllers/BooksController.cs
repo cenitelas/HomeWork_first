@@ -18,10 +18,12 @@ namespace WebApplication1.Controllers
     {
         IBookService bookService;
         IAuthorService authorService;
-        public BooksController(IBookService serv, IAuthorService serv2)
+        IGenreService genreService;
+        public BooksController(IBookService serv, IAuthorService serv2, IGenreService serv3)
         {
             bookService = serv;
             authorService = serv2;
+            genreService = serv3;
         }
 
         public ActionResult Index()
@@ -33,7 +35,9 @@ namespace WebApplication1.Controllers
         {
             BookModel book = new BookModel();
             List<AuthorModel> authors = AutoMapper<IEnumerable<BAuthor>, List<AuthorModel>>.Map(authorService.GetAuthors);
+            List<GenreModel> genres = AutoMapper<IEnumerable<BGenre>, List<GenreModel>>.Map(genreService.GetGenres);
             ViewBag.AuthorId = new SelectList(authors, "Id", "FirstName");
+            ViewBag.GenreId = new SelectList(genres, "Id", "Name");
             if (id != 0)
             {
                 book = AutoMapper<BBook, BookModel>.Map(bookService.GetBook,(int)id);

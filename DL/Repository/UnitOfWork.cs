@@ -15,6 +15,7 @@ namespace DL.Repository
         private BooksRepository bookRepository;
         private AuthorRepository authorRepository;
         private UsersBooksRepository userBooksRepository;
+        private GenreRepository genreRepository;
         public UnitOfWork(string connection)
         {
             db = new Model1(connection);
@@ -57,6 +58,16 @@ namespace DL.Repository
                 if (authorRepository == null)
                     authorRepository = new AuthorRepository(db);
                 return authorRepository;
+            }
+        }
+
+        public IRepository<Genre> Genre
+        {
+            get
+            {
+                if (genreRepository == null)
+                    genreRepository = new GenreRepository(db);
+                return genreRepository;
             }
         }
 

@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201909061205262_Create-genre-rep.Designer.cs">
       <DependentUpon>201909061205262_Create-genre-rep.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909091250570_UpdateGenre.cs" />
+    <Compile Include="Migrations\201909091250570_UpdateGenre.Designer.cs">
+      <DependentUpon>201909091250570_UpdateGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuthorRepository.cs" />
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909061205262_Create-genre-rep.resx">
       <DependentUpon>201909061205262_Create-genre-rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909091250570_UpdateGenre.resx">
+      <DependentUpon>201909091250570_UpdateGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

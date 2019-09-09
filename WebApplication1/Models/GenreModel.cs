@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace BL.BModel
+namespace WebApplication1.Models
 {
-    public class BGenre
+    public class GenreModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
