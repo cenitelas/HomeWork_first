@@ -1,15 +1,8 @@
 ﻿@model WebApplication1.Models.AuthorModel
 
-@{
-    ViewBag.Title = "EditAndCreate";
-}
-
-<h2>EditAndCreate</h2>
-
-@using (Html.BeginForm())
+@using (Ajax.BeginForm("EditAndCreate", new AjaxOptions { HttpMethod="POST", UpdateTargetId = "authors-content" }))
 {
-    @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>AuthorModel</h4>
         <hr />
@@ -40,6 +33,4 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@Scripts.Render("~/bundles/bootstrap")

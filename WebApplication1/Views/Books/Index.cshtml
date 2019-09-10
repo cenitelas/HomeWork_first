@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<WebApplication1.Models.BookModel>
-
 @{
     ViewBag.Title = "Index";
 }
@@ -9,55 +8,10 @@
 <p>
     @Html.ActionLink("Create New", "CreateAndEdit")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GenreName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model=>model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pages)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuthorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GenreName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
-                                + Convert.ToBase64String(item.Image) + "\" />")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pages)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "CreateAndEdit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+<p>
+        @Html.Label("Select genre:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("genre",ViewBag.genre as SelectList, new { @class = "btn btn-default dropdown-toggle form-control", @id = "genre" })
+        </div>
+</p>
+<div id="content"></div>

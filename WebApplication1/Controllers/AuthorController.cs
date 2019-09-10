@@ -29,16 +29,17 @@ namespace WebApplication1.Controllers
         public ActionResult EditAndCreate(int? id=0)
         {
             AuthorModel author = AutoMapper<BAuthor, AuthorModel>.Map(authorService.GetAuthor,(int)id);
-            return View(author);
+            return PartialView("EditOrCreate", author);
 
         }
 
         [HttpPost]
         public ActionResult EditAndCreate(AuthorModel author)
         {
-            BAuthor oldAuthor = AutoMapper<AuthorModel, BAuthor>.Map(author);
-            authorService.CreateOrUpdate(oldAuthor);
-            return RedirectToActionPermanent("Index", "Author");
+                BAuthor oldAuthor = AutoMapper<AuthorModel, BAuthor>.Map(author);
+                authorService.CreateOrUpdate(oldAuthor);
+                return PartialView("ViewAuthors", AutoMapper<IEnumerable<BAuthor>, List<AuthorModel>>.Map(authorService.GetAuthors));
+   
         }
 
         public ActionResult Delete(int id)

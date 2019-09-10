@@ -62,6 +62,14 @@ namespace BL.Services
             return books;
         }
 
+        public IEnumerable<BBook> GetBooksSortGenre(int id)
+        {
+            List<BBook> books = AutoMapper<IEnumerable<Books>, List<BBook>>.Map(Database.Books.Find(i=>i.GenreId==id)).ToList();
+            books.ForEach(i => i.AuthorName = Database.Authors.Get(i.AuthorId).FirstName);
+            books.ForEach(i => i.GenreName = Database.Genre.Get(i.GenreId).Name);
+            return books;
+        }
+
         public void DeleteBook(int id)
         {
             Database.Books.Delete(id);

@@ -29,7 +29,11 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-            return View(AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));
+            List<GenreModel> genres = AutoMapper<IEnumerable<BGenre>, List<GenreModel>>.Map(genreService.GetGenres);
+            GenreModel genre = new GenreModel() { Id = 0, Name = "All" };
+            genres.Add(genre);
+            ViewBag.genre = new SelectList(genres, "Id", "Name");
+            return View();
         }
 
         public ActionResult CreateAndEdit(int? id=0)
@@ -61,6 +65,16 @@ namespace WebApplication1.Controllers
             }
             bookService.CreateOrUpdate(newBook);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult SortGenre(int? id=0)
+        {
+            if (id == 0)
+                return PartialView("ViewBooks", AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));
+            else
+                return PartialView("ViewBooks", AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooksSortGenre,(int)id));
+
         }
 
         public ActionResult Delete(int id)

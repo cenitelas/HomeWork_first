@@ -37,6 +37,7 @@ namespace WebApplication1.Controllers
                 List<AuthorBook> ab =  AutoMapper<IEnumerable<BUsersBook>, List<AuthorBook>>.Map(userService.GetReturnBooks,(int)id);
                 UserModel user = AutoMapper<BUsers, UserModel>.Map(userService.GetUser,(int)id);
                 ViewBag.books = ab;
+
                 return View(user);
         }
 
