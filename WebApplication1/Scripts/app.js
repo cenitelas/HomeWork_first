@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $('#mdb-preloader').removeClass('d-lg-none');
     $.post(
        "/Books/SortGenre",
        {
@@ -23,10 +24,11 @@
 function onAjaxSuccess(data) {
     // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
     $('#content').html(data);
+    $('#mdb-preloader').addClass('d-lg-none');
 }
 
-
 function editAuthor(id) {
+    $('#mdb-preloader').removeClass('d-lg-none');
         $.get(
         "/Author/EditAndCreate",
         {
@@ -38,4 +40,5 @@ function editAuthor(id) {
 
 function onAjaxSuccessAuthor(data) {
     $('#modal-body').html(data);
+    $('#mdb-preloader').addClass('d-lg-none');
 }
