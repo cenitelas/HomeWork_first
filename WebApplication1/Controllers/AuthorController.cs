@@ -45,7 +45,7 @@ namespace WebApplication1.Controllers
         public ActionResult Delete(int id)
         {
             authorService.DeleteAuthor(id);
-            return RedirectToAction("Index", "Author");
+            return PartialView("ViewAuthors", AutoMapper<IEnumerable<BAuthor>, List<AuthorModel>>.Map(authorService.GetAuthors));
         }
     }
 }

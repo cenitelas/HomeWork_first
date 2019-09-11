@@ -4,6 +4,14 @@
     ViewBag.Title = "Index";
 }
 
+
+<h2>Index</h2>
+<p>
+    @Ajax.ActionLink("Create new", "EditAndCreate", new { id = 0}, new AjaxOptions { UpdateTargetId = "modal-body" }, new { data_toggle = "modal", data_target = "#exampleModalScrollable" })
+</p>
+<div id="authors-content">
+    @Html.Partial("ViewAuthors", Model)
+</div>
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -12,17 +20,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>            
+            </div>
             <div class="modal-body" id="modal-body">
-
             </div>
         </div>
     </div>
-</div>
-<h2>Index</h2>
-<p>
-    <a class="btn btn-link" role="button" onclick="editAuthor(0)" data-toggle="modal" data-target="#exampleModalScrollable">Create new</a>
-</p>
-<div id="authors-content">
-    @Html.Partial("ViewAuthors", Model)
 </div>

@@ -21,9 +21,8 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                <a class="btn btn-link" onclick="editAuthor(@item.Id)" data-toggle="modal" data-target="#exampleModalScrollable">Edit</a> |
-
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn - link" })
+                @Ajax.ActionLink("Edit", "EditAndCreate", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "modal-body" }, new { data_toggle = "modal", data_target = "#exampleModalScrollable" }) | 
+                @Ajax.ActionLink("Delete", "Delete", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "authors-content" })
             </td>
         </tr>
     }
