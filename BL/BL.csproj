@@ -49,16 +49,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BInterfaces\IAuthorService.cs" />
+    <Compile Include="BInterfaces\IGenreService.cs" />
+    <Compile Include="BInterfaces\ILogDetailService.cs" />
     <Compile Include="BInterfaces\IUserBookService.cs" />
     <Compile Include="BInterfaces\IBookService.cs" />
     <Compile Include="BInterfaces\IUserService.cs" />
     <Compile Include="BModel\BAuthor.cs" />
     <Compile Include="BModel\BBook.cs" />
+    <Compile Include="BModel\BGenre.cs" />
+    <Compile Include="BModel\BLogDetail.cs" />
     <Compile Include="BModel\BUsers.cs" />
     <Compile Include="BModel\BUsersBook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorService.cs" />
     <Compile Include="Services\BookService.cs" />
+    <Compile Include="Services\GenreService.cs" />
+    <Compile Include="Services\LogDetailService.cs" />
     <Compile Include="Services\ServiceModule.cs" />
     <Compile Include="Services\UserBookService.cs" />
     <Compile Include="Services\UserService.cs" />

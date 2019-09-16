@@ -25,3 +25,7 @@ C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations
 C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.GenerateResource.Cache
 C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.dll
 C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.pdb
+C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csprojResolveAssemblyReference.cache
+C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.Creategenrerep.resources
+C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.UpdateGenre.resources
+C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.CreateLogDetail.resources

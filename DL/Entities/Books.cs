@@ -12,6 +12,12 @@ namespace DL.Entities
 
         public int AuthorId { get; set; }
 
+        public int GenreId { get; set; }
+
+        public virtual Genre Genre { get; set; }
+
+        public byte[] Image { get; set; }
+
         [Required]
         [StringLength(150)]
         public string Title { get; set; }

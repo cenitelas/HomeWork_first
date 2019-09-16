@@ -26,7 +26,7 @@ namespace BL.Services
             if (book.Id == 0)
             {
 
-                Books dbook = new Books() { AuthorId=book.AuthorId, Pages=book.Pages, Price=book.Price, Title = book.Title};
+                Books dbook = new Books() { AuthorId=book.AuthorId, Pages=book.Pages, Price=book.Price, Title = book.Title, GenreId=book.GenreId};
                 Database.Books.Create(dbook);
             }
             else
@@ -48,6 +48,7 @@ namespace BL.Services
             {
                 BBook book = AutoMapper<Books, BBook>.Map(Database.Books.Get,(int)id);
                 book.AuthorName = Database.Authors.Get(book.AuthorId).FirstName;
+                book.GenreName = Database.Genre.Get(book.GenreId).Name;
                 return book;
             }
             return null;
@@ -57,6 +58,15 @@ namespace BL.Services
         {
             List<BBook> books =  AutoMapper<IEnumerable<Books>, List<BBook>>.Map(Database.Books.GetAll).ToList();
             books.ForEach(i => i.AuthorName = Database.Authors.Get(i.AuthorId).FirstName);
+            books.ForEach(i => i.GenreName = Database.Genre.Get(i.GenreId).Name);
+            return books;
+        }
+
+        public IEnumerable<BBook> GetBooksSortGenre(int id)
+        {
+            List<BBook> books = AutoMapper<IEnumerable<Books>, List<BBook>>.Map(Database.Books.Find(i=>i.GenreId==id)).ToList();
+            books.ForEach(i => i.AuthorName = Database.Authors.Get(i.AuthorId).FirstName);
+            books.ForEach(i => i.GenreName = Database.Genre.Get(i.GenreId).Name);
             return books;
         }
 

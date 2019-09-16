@@ -16,6 +16,7 @@ using BL.BModel;
 using WebApplication1.Models;
 using BL;
 using BL.Utils;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -56,6 +57,7 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [Logger]
         [HttpPost]
         public ActionResult CreateOrEdit(AuthorBook usersBooks)
         {
@@ -87,12 +89,14 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [Logger]
         public ActionResult Delete(int id)
         {
             userBookService.DeleteUserBook(id);
             return RedirectToAction("Index");
         }
 
+        [Logger]
         public ActionResult Download()
         {
             List<AuthorBook> dolj = AutoMapper<IEnumerable<BUsersBook>, List<AuthorBook>>.Map(userBookService.GetUsersBooks).Where(i => i.DateOrder < DateTime.Now).ToList();
@@ -113,6 +117,7 @@ namespace WebApplication1.Controllers
             return File(data, contentType, "users.txt");
         }
 
+        [Logger]
         public ActionResult Link(int id)
         {
             BUsers user = userService.GetUser(id);

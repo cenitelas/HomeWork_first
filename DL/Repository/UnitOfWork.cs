@@ -15,6 +15,8 @@ namespace DL.Repository
         private BooksRepository bookRepository;
         private AuthorRepository authorRepository;
         private UsersBooksRepository userBooksRepository;
+        private GenreRepository genreRepository;
+        private LogDetailRepository logDetailRepository;
         public UnitOfWork(string connection)
         {
             db = new Model1(connection);
@@ -60,6 +62,25 @@ namespace DL.Repository
             }
         }
 
+        public IRepository<Genre> Genre
+        {
+            get
+            {
+                if (genreRepository == null)
+                    genreRepository = new GenreRepository(db);
+                return genreRepository;
+            }
+        }
+
+        public IRepository<LogDetail> LogDetails
+        {
+            get
+            {
+                if (logDetailRepository == null)
+                    logDetailRepository = new LogDetailRepository(db);
+                return logDetailRepository;
+            }
+        }
         public void Save()
         {
             db.SaveChanges();

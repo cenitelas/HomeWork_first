@@ -1,13 +1,7 @@
 ﻿@using WebApplication1.Models;
 @model WebApplication1.Models.BookModel
 
-    @{
-        ViewBag.Title = "CreateAndEdit";
-    }
-
-    <h2>CreateAndEdit</h2>
-
-    @using (Html.BeginForm())
+    @using (Ajax.BeginForm("CreateAndEdit", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" }))
     {
         @Html.AntiForgeryToken()
 
@@ -22,6 +16,14 @@
                 <div class="col-md-10">
                     @Html.DropDownListFor(md => md.AuthorId, ViewBag.AuthorId as SelectList, new { @class = "btn btn-default dropdown-toggle form-control" })
                     @Html.ValidationMessageFor(model => model.AuthorId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GenreName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(md => md.GenreId, ViewBag.GenreId as SelectList, new { @class = "btn btn-default dropdown-toggle form-control" })
+                    @Html.ValidationMessageFor(model => model.GenreId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -42,6 +44,13 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input name="imageBook" type="file" id="imageBook" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
@@ -51,12 +60,10 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <button type="submit" class="btn btn-success" role="button">Save</button>
+                    <button data-dismiss="modal" data-target="#exampleModalScrollable" class="btn btn-secondary" role="button">Close</button>
                 </div>
             </div>
         </div>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>

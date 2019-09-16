@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1;
 using WebApplication1.Models;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -37,9 +38,11 @@ namespace WebApplication1.Controllers
                 List<AuthorBook> ab =  AutoMapper<IEnumerable<BUsersBook>, List<AuthorBook>>.Map(userService.GetReturnBooks,(int)id);
                 UserModel user = AutoMapper<BUsers, UserModel>.Map(userService.GetUser,(int)id);
                 ViewBag.books = ab;
+
                 return View(user);
         }
 
+        [Logger]
         [HttpPost]
         public ActionResult CreateOrEdit(UserModel model)
         {
@@ -48,6 +51,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        [Logger]
         public ActionResult Delete(int id)
         {
             userService.DeleteUser(id);

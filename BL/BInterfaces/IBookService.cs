@@ -12,6 +12,7 @@ namespace BL.BInterfaces
         void CreateOrUpdate(BBook book);
         BBook GetBook(int id);
         IEnumerable<BBook> GetBooks();
+        IEnumerable<BBook> GetBooksSortGenre(int id);
         void DeleteBook(int id);
         void Dispose();
     }
