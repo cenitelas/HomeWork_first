@@ -9,9 +9,16 @@
     @Html.ActionLink("Create New", "CreateAndEdit")
 </p>
 <p>
-        @Html.Label("Select genre:", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("genre",ViewBag.genre as SelectList, new { @class = "btn btn-default dropdown-toggle form-control", @id = "genre" })
-        </div>
+     
+            @using (@Ajax.BeginForm("SortGenre", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" }))
+            {
+                @Html.Label("Select genre:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id", ViewBag.genre as SelectList, new { @class = "btn btn-default dropdown-toggle form-control", onchange = "$(this).trigger('submit');" })
+                </div>
+            }
+              
 </p>
-<div id="content"></div>
+<div id="content-book">
+    @Html.Partial("ViewBooks", Model)
+</div>

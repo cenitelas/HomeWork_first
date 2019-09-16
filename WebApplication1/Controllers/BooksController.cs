@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
             GenreModel genre = new GenreModel() { Id = 0, Name = "All" };
             genres.Add(genre);
             ViewBag.genre = new SelectList(genres, "Id", "Name");
-            return View();
+            return View(AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));
         }
 
         public ActionResult CreateAndEdit(int? id=0)
