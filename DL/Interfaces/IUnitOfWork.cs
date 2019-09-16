@@ -15,6 +15,7 @@ namespace DL.Interfaces
         IRepository<Authors> Authors { get; }
         IRepository<Books> Books { get; }
         IRepository<Genre> Genre { get; }
+        IRepository<LogDetail> LogDetails { get; }
         void Save();
     }
 }

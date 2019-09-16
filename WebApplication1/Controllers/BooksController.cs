@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using WebApplication1;
 using WebApplication1.Models;
 using System.IO;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -46,10 +47,11 @@ namespace WebApplication1.Controllers
             if (id != 0)
             {
                 book = AutoMapper<BBook, BookModel>.Map(bookService.GetBook,(int)id);
-            }
-            return View(book);
+            }          
+            return PartialView("CreateAndEdit", book);
         }
 
+        [Logger]
         [HttpPost]
         public ActionResult CreateAndEdit(BookModel book, HttpPostedFileBase imageBook = null)
         {
@@ -64,7 +66,7 @@ namespace WebApplication1.Controllers
                 newBook.Image = imageData;
             }
             bookService.CreateOrUpdate(newBook);
-            return RedirectToAction("Index");
+            return PartialView("ViewBooks", AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));
         }
 
         [HttpPost]
@@ -77,10 +79,11 @@ namespace WebApplication1.Controllers
 
         }
 
+        [Logger]
         public ActionResult Delete(int id)
         {
             bookService.DeleteBook(id);
-            return RedirectToAction("Index");
+            return PartialView("ViewBooks", AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));
         }
     }
 }

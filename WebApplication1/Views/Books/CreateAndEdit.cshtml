@@ -1,13 +1,7 @@
 ﻿@using WebApplication1.Models;
 @model WebApplication1.Models.BookModel
 
-    @{
-        ViewBag.Title = "CreateAndEdit";
-    }
-
-    <h2>CreateAndEdit</h2>
-
-    @using (Html.BeginForm("CreateAndEdit", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Ajax.BeginForm("CreateAndEdit", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" }))
     {
         @Html.AntiForgeryToken()
 
@@ -66,12 +60,10 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <button type="submit" class="btn btn-success" role="button">Save</button>
+                    <button data-dismiss="modal" data-target="#exampleModalScrollable" class="btn btn-secondary" role="button">Close</button>
                 </div>
             </div>
         </div>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>

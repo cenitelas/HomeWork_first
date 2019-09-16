@@ -52,6 +52,7 @@
     <Compile Include="Entities\Authors.cs" />
     <Compile Include="Entities\Books.cs" />
     <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\LogDetail.cs" />
     <Compile Include="Entities\Model1.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Entities\UsersBooks.cs" />
@@ -73,11 +74,16 @@
     <Compile Include="Migrations\201909091250570_UpdateGenre.Designer.cs">
       <DependentUpon>201909091250570_UpdateGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909161349124_Create-LogDetail.cs" />
+    <Compile Include="Migrations\201909161349124_Create-LogDetail.Designer.cs">
+      <DependentUpon>201909161349124_Create-LogDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuthorRepository.cs" />
     <Compile Include="Repository\BooksRepository.cs" />
     <Compile Include="Repository\GenreRepository.cs" />
+    <Compile Include="Repository\LogDetailRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\UsersBooksRepository.cs" />
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909091250570_UpdateGenre.resx">
       <DependentUpon>201909091250570_UpdateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909161349124_Create-LogDetail.resx">
+      <DependentUpon>201909161349124_Create-LogDetail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

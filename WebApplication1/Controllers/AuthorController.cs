@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Filters;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -17,9 +18,11 @@ namespace WebApplication1.Controllers
     public class AuthorController : Controller
     {
         IAuthorService authorService;
-        public AuthorController(IAuthorService serv)
+        static LogDetailService log;
+        public AuthorController(IAuthorService serv, ILogDetailService serv2)
         {
             authorService = serv;
+            log = (LogDetailService)serv2;
         }
         public ActionResult Index()
         {
@@ -32,7 +35,7 @@ namespace WebApplication1.Controllers
             return PartialView("EditOrCreate", author);
 
         }
-
+        [Logger]
         [HttpPost]
         public ActionResult EditAndCreate(AuthorModel author)
         {
@@ -41,7 +44,7 @@ namespace WebApplication1.Controllers
                 return PartialView("ViewAuthors", AutoMapper<IEnumerable<BAuthor>, List<AuthorModel>>.Map(authorService.GetAuthors));
    
         }
-
+        [Logger]
         public ActionResult Delete(int id)
         {
             authorService.DeleteAuthor(id);

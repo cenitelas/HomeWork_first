@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1;
 using WebApplication1.Models;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -41,6 +42,7 @@ namespace WebApplication1.Controllers
                 return View(user);
         }
 
+        [Logger]
         [HttpPost]
         public ActionResult CreateOrEdit(UserModel model)
         {
@@ -49,6 +51,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        [Logger]
         public ActionResult Delete(int id)
         {
             userService.DeleteUser(id);
