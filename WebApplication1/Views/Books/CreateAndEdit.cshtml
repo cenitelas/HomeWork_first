@@ -1,7 +1,7 @@
 ﻿@using WebApplication1.Models;
 @model WebApplication1.Models.BookModel
 
-    @using (Ajax.BeginForm("CreateAndEdit", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" }))
+    @using (Ajax.BeginForm("CreateAndEdit", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" },new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 

@@ -1,0 +1,114 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0 1px;
+    background-color: #12364a;
+    background-size: 12px 12px;
+}
+
+.navbar{
+    background-color: rgba(0, 0, 0, 0.466);
+}
+
+.table hr{
+    color: #ffc107;
+}
+.search{
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.search form{
+width: 40%;
+}
+
+.search form select{
+background: #ffc107;
+}
+
+.search form select:focus{
+    background: orange;
+    outline:none;
+}
+
+.search form select:link{
+    background: #ffc107;
+}
+
+.books {
+    width:70%;
+    height:100%;
+    display:flex;
+    justify-content:flex-start;
+}
+
+.books .book{
+    position:relative;
+    width:250px;
+    height:300px;
+    margin:1%;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.books .book img{
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index:1;
+    overflow: hidden;
+    animation: noscale  1s 1 ease-in-out forwards;
+}
+
+.books .book .info{
+    width:250px;
+    height:300px;
+    text-align: center;
+    position:absolute;
+    background-color:rgba(255, 166, 0, 0.9);
+    animation: noview  1s 1 ease-in-out forwards;
+}
+
+.books .book:hover .info{
+    animation: view  1s 1 ease-in-out forwards;
+}
+
+.books .book:hover img{
+    animation: scale  1s 1 ease-in-out forwards;
+}
+
+.books .book .info h4{
+ padding-bottom: 20px;
+}
+
+.books .book .info .button-block{
+    margin: 0 auto;
+    width: 70%;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@keyframes scale {
+    from {transform: scale(1);}
+    to {transform: scale(1.3);}
+}
+
+
+@keyframes view {
+    from {opacity:0;}
+    to {opacity: 1; z-index: 2}
+}
+
+@keyframes noscale {
+    from {transform: scale(1.3);}
+    to {transform: scale(1);}
+}
+
+
+@keyframes noview {
+    from {opacity:1;}
+    to {opacity: 0; z-index: 0}
+}

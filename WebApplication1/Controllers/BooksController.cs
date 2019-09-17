@@ -57,6 +57,7 @@ namespace WebApplication1.Controllers
         {
             BBook newBook = AutoMapper<BookModel, BBook>.Map(book);
             byte[] imageData = null;
+            var im = imageBook;
             if (imageBook != null)
             {
                 using (var binaryReader = new BinaryReader(imageBook.InputStream))

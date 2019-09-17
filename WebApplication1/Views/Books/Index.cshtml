@@ -1,24 +1,17 @@
 ﻿@model IEnumerable<WebApplication1.Models.BookModel>
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
 <p>
-    @Ajax.ActionLink("Create new", "CreateAndEdit", new { id = 0 }, new AjaxOptions { UpdateTargetId = "modal-body" }, new { data_toggle = "modal", data_target = "#exampleModalScrollable" })
+    @Ajax.ActionLink("Create new", "CreateAndEdit", new { id = 0 }, new AjaxOptions { UpdateTargetId = "modal-body" }, new {@class="btn btn-warning", data_toggle = "modal", data_target = "#exampleModalScrollable" })
 </p>
-<p>
-     
+<div class="search">
             @using (@Ajax.BeginForm("SortGenre", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" }))
             {
-                @Html.Label("Select genre:", htmlAttributes: new { @class = "control-label col-md-2" })
+               
                 <div class="col-md-10">
-                    @Html.DropDownList("id", ViewBag.genre as SelectList, new { @class = "btn btn-default dropdown-toggle form-control", onchange = "$(this).trigger('submit');" })
+                   Genre: @Html.DropDownList("id", ViewBag.genre as SelectList, new { @class = "btn btn-default dropdown-toggle form-control", onchange = "$(this).trigger('submit');" })
                 </div>
-            }
               
-</p>
+            }    
+</div>
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
