@@ -51,6 +51,7 @@ background: #ffc107;
     overflow: hidden;
     border-radius: 10px;
     cursor: pointer;
+    color:black;
 }
 
 .books .book img{
