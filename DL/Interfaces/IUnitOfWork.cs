@@ -16,6 +16,7 @@ namespace DL.Interfaces
         IRepository<Books> Books { get; }
         IRepository<Genre> Genre { get; }
         IRepository<LogDetail> LogDetails { get; }
+        IRepository<Vote> Vote { get; }
         void Save();
     }
 }

@@ -56,6 +56,7 @@
     <Compile Include="Entities\Model1.cs" />
     <Compile Include="Entities\Users.cs" />
     <Compile Include="Entities\UsersBooks.cs" />
+    <Compile Include="Entities\Vote.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201908261742427_Create project.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\UsersBooksRepository.cs" />
+    <Compile Include="Repository\VoteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

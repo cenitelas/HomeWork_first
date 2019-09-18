@@ -196,6 +196,7 @@
     <Compile Include="Controllers\UsersBooksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="Filters\LoggerAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +207,7 @@
     <Compile Include="Models\GenreModel.cs" />
     <Compile Include="Models\LoggerModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\VoteModel.cs" />
     <Compile Include="Modules\ViewModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

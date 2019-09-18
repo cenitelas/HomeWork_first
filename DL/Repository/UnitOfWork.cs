@@ -17,6 +17,7 @@ namespace DL.Repository
         private UsersBooksRepository userBooksRepository;
         private GenreRepository genreRepository;
         private LogDetailRepository logDetailRepository;
+        private VoteRepository voteRepository;
         public UnitOfWork(string connection)
         {
             db = new Model1(connection);
@@ -79,6 +80,16 @@ namespace DL.Repository
                 if (logDetailRepository == null)
                     logDetailRepository = new LogDetailRepository(db);
                 return logDetailRepository;
+            }
+        }
+
+        public IRepository<Vote> Vote
+        {
+            get
+            {
+                if (voteRepository == null)
+                    voteRepository = new VoteRepository(db);
+                return voteRepository;
             }
         }
         public void Save()

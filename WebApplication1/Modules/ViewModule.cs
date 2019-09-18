@@ -19,6 +19,7 @@ namespace WebApplication1.Modules
             Bind<IUserService>().To<UserService>();
             Bind<IGenreService>().To<GenreService>();
             Bind<ILogDetailService>().To<LogDetailService>();
+            Bind<IVoteService>().To<VoteService>();
         }
     }
 }
