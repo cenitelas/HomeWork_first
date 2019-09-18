@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201909161349124_Create-LogDetail.Designer.cs">
       <DependentUpon>201909161349124_Create-LogDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909181314213_Create-Vote-Rep.cs" />
+    <Compile Include="Migrations\201909181314213_Create-Vote-Rep.Designer.cs">
+      <DependentUpon>201909181314213_Create-Vote-Rep.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuthorRepository.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909161349124_Create-LogDetail.resx">
       <DependentUpon>201909161349124_Create-LogDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181314213_Create-Vote-Rep.resx">
+      <DependentUpon>201909181314213_Create-Vote-Rep.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

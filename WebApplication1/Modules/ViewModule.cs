@@ -2,10 +2,12 @@
 using BL.BInterfaces;
 using BL.Services;
 using Ninject.Modules;
+using Ninject.Web.WebApi.Filter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 
 namespace WebApplication1.Modules
 {
@@ -20,6 +22,7 @@ namespace WebApplication1.Modules
             Bind<IGenreService>().To<GenreService>();
             Bind<ILogDetailService>().To<LogDetailService>();
             Bind<IVoteService>().To<VoteService>();
+            Bind<DefaultFilterProviders>().ToSelf().WithConstructorArgument(GlobalConfiguration.Configuration.Services.GetFilterProviders());
         }
     }
 }

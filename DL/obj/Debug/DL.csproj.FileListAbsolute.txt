@@ -46,3 +46,4 @@ C:\Users\cenit\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.CoreCompileInp
 C:\Users\cenit\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.CopyComplete
 C:\Users\cenit\Source\Repos\HomeWork_first\DL\obj\Debug\DL.dll
 C:\Users\cenit\Source\Repos\HomeWork_first\DL\obj\Debug\DL.pdb
+C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.CreateVoteRep.resources

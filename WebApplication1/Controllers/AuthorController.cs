@@ -18,11 +18,11 @@ namespace WebApplication1.Controllers
     public class AuthorController : Controller
     {
         IAuthorService authorService;
-        static LogDetailService log;
+        ILogDetailService log;
         public AuthorController(IAuthorService serv, ILogDetailService serv2)
         {
             authorService = serv;
-            log = (LogDetailService)serv2;
+            log = serv2;
         }
         public ActionResult Index()
         {

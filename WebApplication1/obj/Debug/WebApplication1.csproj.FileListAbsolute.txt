@@ -333,3 +333,11 @@ C:\Users\cenit\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.Web
 C:\Users\cenit\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 C:\Users\cenit\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\cenit\Source\Repos\HomeWork_first\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Net.Http.Formatting.resources.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.Http.resources.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.Http.WebHost.resources.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.WebHost.dll
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.xml
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.WebHost.xml
+C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\WebActivatorEx.dll
