@@ -23,6 +23,7 @@ namespace WebApplication1.Modules
             Bind<ILogDetailService>().To<LogDetailService>();
             Bind<IVoteService>().To<VoteService>();
             Bind<DefaultFilterProviders>().ToSelf().WithConstructorArgument(GlobalConfiguration.Configuration.Services.GetFilterProviders());
+            Bind<DefaultModelValidatorProviders>().ToSelf().WithConstructorArgument(GlobalConfiguration.Configuration.Services.GetModelValidatorProviders());
         }
     }
 }

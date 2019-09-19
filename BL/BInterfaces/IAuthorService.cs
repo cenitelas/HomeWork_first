@@ -13,6 +13,7 @@ namespace BL.BInterfaces
         BAuthor GetAuthor(int id);
         IEnumerable<BAuthor> GetAuthors();
         void DeleteAuthor(int id);
+        BAuthor GetForName(string name);
         void Dispose();
     }
 }

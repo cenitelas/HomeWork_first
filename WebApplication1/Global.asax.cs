@@ -31,8 +31,8 @@ namespace WebApplication1
             NinjectModule Module = new ViewModule();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
             var kernel = new StandardKernel(serviceModule, Module);
-            GlobalConfiguration.Configuration.DependencyResolver = new Ninject.Web.WebApi.NinjectDependencyResolver(kernel);
             DependencyResolver.SetResolver(new Ninject.Web.Mvc.NinjectDependencyResolver(kernel));
+            GlobalConfiguration.Configuration.DependencyResolver = new Ninject.Web.WebApi.NinjectDependencyResolver(kernel);
         }
     }
 }

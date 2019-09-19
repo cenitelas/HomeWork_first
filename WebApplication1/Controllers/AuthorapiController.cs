@@ -23,14 +23,16 @@ namespace WebApplication1.Controllers
             return AutoMapper<IEnumerable<BAuthor>, List<AuthorModel>>.Map(authorService.GetAuthors);
         }
 
-        public string Get(int id)
+        public AuthorModel Get(int id)
         {
-            return "value";
+            return AutoMapper<BAuthor, AuthorModel>.Map(authorService.GetAuthor(id));
         }
 
-        public void Post([FromBody]string value)
+        public AuthorModel Post(AuthorModel author)
         {
-            var a = value;
+            BAuthor newAuthor = AutoMapper<AuthorModel, BAuthor>.Map(author);
+            authorService.CreateOrUpdate(newAuthor);
+            return AutoMapper<BAuthor, AuthorModel>.Map(authorService.GetForName(author.FirstName));
         }
 
         public void Put(int id, [FromBody]string value)
@@ -39,6 +41,7 @@ namespace WebApplication1.Controllers
 
         public void Delete(int id)
         {
+            authorService.DeleteAuthor(id);
         }
     }
 }

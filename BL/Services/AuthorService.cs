@@ -56,6 +56,15 @@ namespace BL.Services
             return AutoMapper<IEnumerable<Authors>, List<BAuthor>>.Map(Database.Authors.GetAll);
         }
 
+        public BAuthor GetForName(string name)
+        {
+            BAuthor author = AutoMapper<Authors, BAuthor>.Map(Database.Authors.Find(i => i.FirstName == name).FirstOrDefault());
+            if(author != null)
+            {
+                return author;
+            }
+            return new BAuthor();
+        }
         public void DeleteAuthor(int id)
         {
             Database.Authors.Delete(id);
