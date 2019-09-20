@@ -198,6 +198,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\MyHelpers.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\UserBooksApiController.cs" />
     <Compile Include="Controllers\UsersBooksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
