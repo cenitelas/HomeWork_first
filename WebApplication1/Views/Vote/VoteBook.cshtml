@@ -1,0 +1,14 @@
+﻿@model IEnumerable<WebApplication1.Models.VoteModel>
+
+<ul>
+@foreach (var item in Model) {
+
+        <li>
+           <span>@Html.DisplayFor(modelItem => item.BookName)</span>
+            <progress value="@item.Votes" max="10">
+    
+            </progress>
+        </li>
+
+}
+</ul>

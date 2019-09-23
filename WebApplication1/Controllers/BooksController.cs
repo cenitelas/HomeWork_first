@@ -21,19 +21,23 @@ namespace WebApplication1.Controllers
         IBookService bookService;
         IAuthorService authorService;
         IGenreService genreService;
-        public BooksController(IBookService serv, IAuthorService serv2, IGenreService serv3)
+        IVoteService voteService;
+        public BooksController(IBookService serv, IAuthorService serv2, IGenreService serv3, IVoteService serv4)
         {
             bookService = serv;
             authorService = serv2;
             genreService = serv3;
+            voteService = serv4;
         }
 
         public ActionResult Index()
         {
             List<GenreModel> genres = AutoMapper<IEnumerable<BGenre>, List<GenreModel>>.Map(genreService.GetGenres);
+            List<VoteModel> votes = AutoMapper<IEnumerable<BVote>, List<VoteModel>>.Map(voteService.GetVotes);
             GenreModel genre = new GenreModel() { Id = 0, Name = "All" };
             genres.Add(genre);
             ViewBag.genre = new SelectList(genres, "Id", "Name");
+            ViewBag.vote = votes;
             return View(AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));
         }
 

@@ -1,0 +1,12 @@
+﻿@using WebApplication1.Models
+@using (@Ajax.BeginForm("VoteBook", "Vote", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-vote" }))
+{
+foreach (var item in ViewData["votes"] as List<VoteModel>)
+{
+    <div class="col-md-10">
+        @Html.RadioButton("id", @item.Id)
+        <span>@item.BookName</span> <br />
+    </div>
+}
+    <button type="submit" class="btn btn-info">Vote</button>
+}

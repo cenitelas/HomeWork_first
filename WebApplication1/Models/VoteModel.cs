@@ -9,6 +9,7 @@ namespace WebApplication1.Models
     {
         public int Id { get; set; }
         public string BookName { get; set; }
+        public int BookId { get; set; }
         public int Votes { get; set; }
     }
 }

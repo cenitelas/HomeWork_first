@@ -48,7 +48,9 @@ namespace DL.Repository
 
         public void Update(Vote item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            var del = db.Vote.FirstOrDefault(i => i.Id == item.Id);
+            del.Votes = item.Votes;
+            db.SaveChanges();
         }
     }
 }

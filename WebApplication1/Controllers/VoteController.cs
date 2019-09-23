@@ -18,9 +18,11 @@ namespace WebApplication1.Controllers
     public class VoteController : Controller
     {
         IVoteService voteService;
-        public VoteController(IVoteService serv)
+        IBookService bookService;
+        public VoteController(IVoteService serv, IBookService serv2)
         {
             voteService = serv;
+            bookService = serv2;
         }
         public ActionResult Index()
         {
@@ -29,8 +31,9 @@ namespace WebApplication1.Controllers
 
         public ActionResult EditAndCreate(int? id = 0)
         {
-            VoteModel vote = AutoMapper<BVote, VoteModel>.Map(voteService.GetVote, (int)id);
-            return View(vote);
+            List<BookModel> books = AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks);
+            ViewBag.books = new SelectList(books, "Id", "Title", id);
+            return View();
 
         }
 
@@ -40,10 +43,18 @@ namespace WebApplication1.Controllers
         {
             BVote oldVote = AutoMapper<VoteModel, BVote>.Map(vote);
             voteService.CreateOrUpdate(oldVote);
-            return RedirectToActionPermanent("Index", "Vote");
+            return RedirectToActionPermanent("Index", "Books");
         }
 
         [Logger]
+        [HttpPost]
+        public ActionResult VoteBook(int id = 0)
+        {
+            BVote vote = voteService.GetVote(id);
+            vote.Votes += 1;
+            voteService.CreateOrUpdate(vote);
+            return PartialView(AutoMapper<IEnumerable<BVote>, List<VoteModel>>.Map(voteService.GetVotes));
+        }
         public ActionResult Delete(int id)
         {
             voteService.DeleteVote(id);
