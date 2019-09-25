@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<WebApplication1.Models.BookModel>
-<p>
-    @Ajax.ActionLink("Create new", "CreateAndEdit", new { id = 0 }, new AjaxOptions { UpdateTargetId = "modal-body" }, new {@class="btn btn-warning", data_toggle = "modal", data_target = "#exampleModalScrollable" })
-</p>
+
+
 <div class="search">
-            @using (@Ajax.BeginForm("SortGenre", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" }))
+    <span>
+    @Ajax.ActionLink("Create new", "CreateAndEdit", new { id = 0 }, new AjaxOptions { UpdateTargetId = "modal-body" }, new {@class="btn btn-warning", data_toggle = "modal", data_target = "#exampleModalScrollable" })
+</span>
+            @using (@Ajax.BeginForm("SortGenre", "Books", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-book" }, new {@class="search-form"}))
             {
                
                 <div class="col-md-10">
@@ -11,10 +13,12 @@
                 </div>
               
             }    
+    <div id="content-vote">
+        <h5>Голосование лучшей книги:</h5>
+         @Html.Partial("~/Views/Vote/Index.cshtml", new ViewDataDictionary { { "votes", @ViewBag.vote } })
+    </div>
 </div>
-<div id="content-vote">
-    @Html.Partial("~/Views/Vote/Index.cshtml", new ViewDataDictionary { { "votes", @ViewBag.vote } })
-</div>
+
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">

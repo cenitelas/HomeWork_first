@@ -42,10 +42,10 @@
             <td>
                 @if (item.DateOrder < DateTime.Now)
                 {
-                    @Html.ActionLink("Link", "Link", new { id = item.UserId }) @(" |")
+                    @Html.ActionLink("Link", "Link", new { id = item.UserId }, new {@class="btn btn-warning"}) @(" |")
                 }
-                @Html.ActionLink("Edit", "CreateOrEdit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "CreateOrEdit", new { id = item.Id }, new {@class="btn btn-warning"}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new {@class="btn btn-warning"})
             </td>
         </tr>
     }

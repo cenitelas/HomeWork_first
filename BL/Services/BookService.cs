@@ -26,7 +26,7 @@ namespace BL.Services
             if (book.Id == 0)
             {
 
-                Books dbook = new Books() { AuthorId=book.AuthorId, Pages=book.Pages, Price=book.Price, Title = book.Title, GenreId=book.GenreId};
+                Books dbook = new Books() { AuthorId=book.AuthorId, Pages=book.Pages, Price=book.Price, Title = book.Title, GenreId=book.GenreId, Image=book.Image};
                 Database.Books.Create(dbook);
             }
             else

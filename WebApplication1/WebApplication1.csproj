@@ -354,6 +354,7 @@
     <Content Include="Views\Vote\Index.cshtml" />
     <Content Include="Views\Vote\EditAndCreate.cshtml" />
     <Content Include="Views\Vote\VoteBook.cshtml" />
+    <Content Include="Views\Vote\ListVote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

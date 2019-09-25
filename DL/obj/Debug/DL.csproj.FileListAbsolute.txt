@@ -6,8 +6,6 @@ C:\Users\fivern\Source\Repos\HomeWork_first\DL\bin\Debug\EntityFramework.SqlServ
 C:\Users\fivern\Source\Repos\HomeWork_first\DL\bin\Debug\EntityFramework.xml
 C:\Users\fivern\Source\Repos\HomeWork_first\DL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csprojAssemblyReference.cache
-C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\WebApplication1.Migrations.Createproject.resources
-C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\WebApplication1.Migrations.AdduseremailandOrderDate.resources
 C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.GenerateResource.cache
 C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.CoreCompileInputs.cache
 C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.CopyComplete
@@ -47,3 +45,9 @@ C:\Users\cenit\Source\Repos\HomeWork_first\DL\obj\Debug\DL.csproj.CopyComplete
 C:\Users\cenit\Source\Repos\HomeWork_first\DL\obj\Debug\DL.dll
 C:\Users\cenit\Source\Repos\HomeWork_first\DL\obj\Debug\DL.pdb
 C:\Users\АтчановА\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.CreateVoteRep.resources
+C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.Createproject.resources
+C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.AdduseremailandOrderDate.resources
+C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.Creategenrerep.resources
+C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.UpdateGenre.resources
+C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.CreateLogDetail.resources
+C:\Users\fivern\Source\Repos\HomeWork_first\DL\obj\Debug\DL.Migrations.CreateVoteRep.resources

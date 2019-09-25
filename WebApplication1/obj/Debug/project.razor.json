@@ -1,0 +1,19 @@
+{
+  "FilePath": "c:\\Users\\fivern\\source\\repos\\HomeWork_first\\WebApplication1\\WebApplication1.csproj",
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 800
+  },
+  "RootNamespace": null,
+  "Documents": [],
+  "SerializationFormat": "0.2"
+}

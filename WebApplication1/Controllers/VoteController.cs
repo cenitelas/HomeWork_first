@@ -29,10 +29,17 @@ namespace WebApplication1.Controllers
             return View(AutoMapper<IEnumerable<BVote>, List<VoteModel>>.Map(voteService.GetVotes));
         }
 
+        public ActionResult ListVote()
+        {
+            return PartialView(AutoMapper<IEnumerable<BVote>, List<VoteModel>>.Map(voteService.GetVotes));
+        }
+
         public ActionResult EditAndCreate(int? id = 0)
         {
             List<BookModel> books = AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks);
+            List<VoteModel> votes = AutoMapper<IEnumerable<BVote>, List<VoteModel>>.Map(voteService.GetVotes);
             ViewBag.books = new SelectList(books, "Id", "Title", id);
+            ViewBag.votes = votes;
             return View();
 
         }

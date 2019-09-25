@@ -60,15 +60,12 @@ namespace WebApplication1.Controllers
         public ActionResult CreateAndEdit(BookModel book, HttpPostedFileBase imageBook = null)
         {
             BBook newBook = AutoMapper<BookModel, BBook>.Map(book);
-            byte[] imageData = null;
-            var im = imageBook;
             if (imageBook != null)
             {
                 using (var binaryReader = new BinaryReader(imageBook.InputStream))
                 {
-                    imageData = binaryReader.ReadBytes(imageBook.ContentLength);
+                    newBook.Image = binaryReader.ReadBytes(imageBook.ContentLength);
                 }
-                newBook.Image = imageData;
             }
             bookService.CreateOrUpdate(newBook);
             return PartialView("ViewBooks", AutoMapper<IEnumerable<BBook>, List<BookModel>>.Map(bookService.GetBooks));

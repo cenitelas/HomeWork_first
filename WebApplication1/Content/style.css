@@ -10,29 +10,30 @@
     background-color: rgba(0, 0, 0, 0.466);
 }
 
-.table hr{
-    color: #ffc107;
+.table{
+    background: #0000003a;
+    color:#ffc107;
 }
 .search{
 width: 100%;
 display: flex;
-justify-content: center;
+justify-content: space-between;
 }
 
-.search form{
+.search .search-form{
 width: 40%;
 }
 
-.search form select{
+.search .search-form select{
 background: #ffc107;
 }
 
-.search form select:focus{
+.search .search-form select:focus{
     background: orange;
     outline:none;
 }
 
-.search form select:link{
+.search .search-form select:link{
     background: #ffc107;
 }
 
@@ -41,6 +42,7 @@ background: #ffc107;
     height:100%;
     display:flex;
     justify-content:flex-start;
+    color: black;
 }
 
 .books .book{
@@ -111,4 +113,33 @@ background: #ffc107;
 @keyframes noview {
     from {opacity:1;}
     to {opacity: 0; z-index: 0}
+}
+
+#content-vote{
+    position: relative;
+    float: right;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffc107;
+    width: 300px;
+    color: black;
+    text-align: center;
+    border-radius: 5px;
+}
+#content-vote *{
+    width: 90%;
+
+margin: 5px auto;
+}
+
+#content-vote div{
+display: flex;
+border-bottom: 2px solid grey;
+}
+
+ul{
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
 }

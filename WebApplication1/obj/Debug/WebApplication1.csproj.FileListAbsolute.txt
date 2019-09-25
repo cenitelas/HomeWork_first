@@ -346,3 +346,17 @@ C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSit
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.xml
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.WebActivator.pdb
 C:\Users\АтчановА\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.WebActivator.xml
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.WebActivator.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.WebHost.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\WebActivatorEx.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\Microsoft.Web.Administration.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.xml
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.WebActivator.pdb
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\MvcSiteMapProvider.WebActivator.xml
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.xml
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\Ninject.Web.WebApi.WebHost.xml
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Net.Http.Formatting.resources.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.Http.resources.dll
+C:\Users\fivern\Source\Repos\HomeWork_first\WebApplication1\bin\ru\System.Web.Http.WebHost.resources.dll
