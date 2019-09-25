@@ -35,8 +35,9 @@ namespace WebApplication1.Controllers
             return AutoMapper<BAuthor, AuthorModel>.Map(authorService.GetForName(author.FirstName));
         }
 
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, AuthorModel value)
         {
+            authorService.CreateOrUpdate(AutoMapper<AuthorModel, BAuthor>.Map(value));
         }
 
         public void Delete(int id)

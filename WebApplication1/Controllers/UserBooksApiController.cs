@@ -36,8 +36,6 @@ namespace WebApplication1.Controllers
 
         public void Put(int id, AuthorBook value)
         {
-            value.Id = id;
-            userBookService.DeleteUserBook(id);
             userBookService.CreateOrUpdate(AutoMapper<AuthorBook, BUsersBook>.Map(value));
         }
 

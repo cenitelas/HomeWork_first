@@ -213,9 +213,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\AuthorapiController.cs" />
+    <Compile Include="Controllers\BookApiController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserBooksApiController.cs" />
     <Compile Include="Controllers\UsersBooksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
